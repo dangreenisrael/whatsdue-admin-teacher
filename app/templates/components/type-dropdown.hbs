@@ -1,0 +1,26 @@
+<!-- Be sure to add the rl-dropdown-toggle class to your dropdown toggle element -->
+<div class="{{dropdownVisibility}}">
+    {{#rl-dropdown-container class="dropdown"}}
+        {{#rl-dropdown-toggle class="btn btn-default"}}
+            {{selection}} <span class="caret"></span>
+        {{/rl-dropdown-toggle}}
+
+        {{#rl-dropdown tagName="ul" class="dropdown-menu" closeOnChildClick="a"}}
+            {{#each item in options}}
+                <li {{action 'select' item}}><a>{{item}}</a></li>
+            {{/each}}
+            <li {{action 'customize'}}><a>Custom <i class="fa fa-plus-circle"></i></a></li>
+        {{/rl-dropdown}}
+    {{/rl-dropdown-container}}
+</div>
+
+<div class="{{inputVisibility}}">
+    {{
+        input type="text"
+        value=selection
+        maxlength="20"
+        class="pull-left form-control"
+        placeholder="Category"
+    }}
+
+</div>

@@ -1,0 +1,32 @@
+<div class="modal-header">
+    <button type="button" {{action 'close'}} class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h4 class="modal-title">Invite Students and Parents</h4>
+</div>
+<div class="modal-body invite">
+    <form action="#" class="form-horizontal ">
+        <div class="form-group">
+
+            <div class="col-md-6 option-panel">
+                <!--{textarea value=emailMessage class="form-control padded" placeholder="Message to your students"}}-->
+                {{multiselect-checkboxes classNames="checkbox" options=classes selection=selectedClasses labelProperty="course_name"}}
+                <ul>
+                    {{#each class in selectedClasses}}
+                        <li>{{class.id}}: {{class.course_name}}</li>
+                    {{/each}}
+                </ul>
+            </div>
+
+
+            <div class="col-md-12">
+                <h5>
+                    Please enter a list of email addresses. <i><strong>Recipients cannot see other email addresses</strong></i>
+                </h5>
+                {{textarea value=emailAddresses class="form-control padded" placeholder="List of emails seperated by commas, spaces, or new lines"}}
+            </div>
+        </div>
+
+    </form>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" {{action 'send'}} >Send Email</button>
+</div>
