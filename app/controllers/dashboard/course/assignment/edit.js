@@ -2,24 +2,23 @@ import Ember from 'ember';
 
 export default Ember.ObjectController.extend({
     actions: {
-        save: function() {
-            console.log(this.get('model'));
-            this.get('model').save();
-
-            //if (validateAssignment() == true) {
-            //    this.get('model').save();
-            //}else{
-            //    alert("Please double check that everything is filled out")
-            //}
+        save: function(data) {
+            var assignment = this.get('model');
+            assignment.set('assignment_name',   data.assignment_name);
+            assignment.set('description',       data.description);
+            assignment.set('due_date',          data.due_date);
+            assignment.save();
             return true;
         },
         remove: function(){
             var model = this.get('model');
+            console.log(model);
             model.destroyRecord();
             return true;
         },
         close: function(){
-           return true;
+            this.get('model').rollback();
+            return true;
         }
     }
 

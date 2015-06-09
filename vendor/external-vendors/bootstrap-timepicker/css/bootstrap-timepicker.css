@@ -23,10 +23,10 @@
   left: auto;
   right: 13px;
 }
-.bootstrap-timepicker .add-on {
+.bootstrap-timepicker .input-group-addon {
   cursor: pointer;
 }
-.bootstrap-timepicker .add-on i {
+.bootstrap-timepicker .input-group-addon i {
   display: inline-block;
   width: 16px;
   height: 16px;
@@ -123,9 +123,10 @@
   font-size: 18px;
 }
 .bootstrap-timepicker-widget table td input {
-  width: 25px;
+  width: 42px;
   margin: 0;
   text-align: center;
+  padding: 4px 6px;
 }
 .bootstrap-timepicker-widget .modal-content {
   padding: 4px;

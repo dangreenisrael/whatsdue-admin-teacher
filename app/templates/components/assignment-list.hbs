@@ -3,25 +3,31 @@
         <tr>
             <!--<th></th>-->
             <th {{action 'sortBy' 'timestamp'}} {{bind-attr class=":due-date :noselect :pointer time sort"}}>Due Date</th>
-            <th {{action 'sortBy' 'assignment_name' }} {{bind-attr class=":due-date :noselect :pointer name sort"}}>Name</th>
-            <th class="description noselect pointer">Description </th>
+            <th>Time</th>
+            <th {{action 'sortBy' 'assignment_name' }} {{bind-attr class=":due-date :noselect :pointer name sort"}}>Category</th>
+            <th class="description noselect">Description </th>
         </tr>
         </thead>
         <tbody>
-            {{#each assignment in course.assignments}}
+            {{#each assignment in sorted.arrangedContent}}
                 {{#unless assignment.archived}}
                     <tr {{bind-attr class=assignment.id}} >
                         <!--<td>-->
                         <!--{input type="checkbox" checked=assignment.checked}}-->
                         <!--</td>-->
-                        <td class="due"  {{action 'click' 'dashboard.course.assignment.edit' course.id assignment.id }}>
+                        <td {{action 'click' 'dashboard.course.assignment.edit' assignment.course_id.id assignment.id }}>
                             <span class="hidden"> {{assignment.timestamp}} </span>
                             {{assignment.dueDate}}
                         </td>
-                        <td class="due"  {{action 'click' 'dashboard.course.assignment.edit' course.id assignment.id}}>
+                        <td {{action 'click' 'dashboard.course.assignment.edit' assignment.course_id.id assignment.id }}>
+                            {{#if assignment.time_visible}}
+                                {{assignment.due_time}}
+                            {{/if}}
+                        </td>
+                        <td {{action 'click' 'dashboard.course.assignment.edit' assignment.course_id.id assignment.id}}>
                             {{assignment.assignment_name}}
                         </td>
-                        <td class="due"  {{action 'click' 'dashboard.course.assignment.edit' course.id assignment.id}}>
+                        <td{{action 'click' 'dashboard.course.assignment.edit' assignment.course_id.id assignment.id}}>
                             {{description-text assignment.description}}
                         </td>
                     </tr>

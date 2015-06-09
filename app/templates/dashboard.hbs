@@ -1,29 +1,34 @@
 <div class="row">
-    <div class="col-sm-4 col-md-3">
         <!-- page heading start-->
-        <div class="sidebar panel panel-default">
+    <div class="col-sm-3 sidebar">
+        <section class="panel">
+            <header class="panel-heading">
+                My Courses
 
-            <div class="panel-heading">
-                <h3 class="panel-title">
-                    <a {{action 'modal' 'courses.new' }}>
-                        Add Course
-                    </a>
-                </h3>
-            </div>
+            </header>
             <div class="panel-body">
-               <ul class="draggable">
+                <ul class="draggable">
                     {{#each course in model}}
                         {{#unless course.archived}}
                             {{scroll-to course.id course.course_name}}
                         {{/unless}}
                     {{/each}}
-               </ul>
+
+                </ul>
+
             </div>
-        </div>
-        <!-- page heading end-->
+            <div class="panel-footer">
+                <button class="btn btn-primary" {{action 'modal' 'dashboard.newCourse' }}>
+                    Add Course
+                </button>
+            </div>
+        </section>
+    </div>
+    <!-- page heading end-->
+    <div class="col-sm-3">
 
     </div>
-    <div class="col-sm-8 col-md-9">
+    <div class="col-sm-9">
         <ul class="courses">
 
         {{#each course in model}}

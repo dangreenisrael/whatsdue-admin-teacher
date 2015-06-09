@@ -2,16 +2,15 @@
     xmlns="http://www.w3.org/1999/html">
     <header class="panel-heading row">
         <div class="col-sm-4">
-            <a {{action 'modal''dashboard.course.edit' course}}>
-                {{course.course_name}}
+            <a {{action 'modal''dashboard.course.edit' course.id}}>
+                {{course.course_name}} - <span class="student-count">{{course.totalSubscribers}} students</span>
+
             </a>
             <br/>
-            <i data-original-title="This is the unique course code. Your students and parents need this code in order to join the course" class="fa fa-question-circle tooltips" data-toggle="tooltip" data-placement="bottom" ></i>
-            {{course.course_code}} -
-            <span class="student-count">{{course.totalSubscribers}} students</span>
+            <span class="student-count">Join Code</span>: {{course.course_code}}
         </div>
         <div class="col-sm-8 row">
-            <button {{action 'modal''dashboard.course.assignment.new' course.id}} class="btn btn-primary col-md-4">
+            <button {{action 'modal''dashboard.course.assignment.new' course.id}} class="btn btn-primary col-md-4 pull-right">
                 <!--<i class="fa fa-plus"></i>--> Add Assignment
             </button>
         </div>
@@ -19,6 +18,6 @@
     </header>
     <div class="panel-body">
         <div class="col-xs-1"></div>
-        {{assignment-list course=course action="modal"}}
+        {{assignment-list assignments=course.assignments action="modal"}}
     </div>
 </li>

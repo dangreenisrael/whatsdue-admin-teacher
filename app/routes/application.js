@@ -1,13 +1,14 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
+
     actions: {
         modal: function(route, param){
+            console.log(param);
             if (param === undefined){
                 this.transitionTo(route);
             } else if (param.constructor === Array){
                 if (param.length === 2){
-                    console.log(param);
                     this.transitionTo(route, param[0], param[1]);
                 }
             } else{
@@ -17,16 +18,15 @@ export default Ember.Route.extend({
         },
         save: function(){
             $('#Modal').modal('hide');
-            this.transitionTo('courses');
+            this.transitionTo('dashboard');
         },
         close: function(){
             $('#Modal').modal('hide');
-            this.transitionTo('courses');
+            this.transitionTo('dashboard');
         },
         remove: function(){
-            console.log('remove');
             $('#Modal').modal('hide');
-            this.transitionTo('courses');
+            this.transitionTo('dashboard');
         }
     }
 });

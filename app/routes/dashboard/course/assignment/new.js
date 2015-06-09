@@ -7,8 +7,8 @@ export default Ember.Route.extend({
             into: 'application'
         });
     },
-    model: function() {
-        var course_id = this.paramsFor('courses.course').course_id;
+    model: function(params) {
+        var course_id = this.paramsFor('dashboard.course').course_id;
         return this.store.find('course', course_id);
     },
     afterModel: function(){

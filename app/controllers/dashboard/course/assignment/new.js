@@ -18,7 +18,6 @@ export default Ember.Controller.extend({
             }
         },
         close: function(){
-            console.log('hi');
             return true;
         }
     }

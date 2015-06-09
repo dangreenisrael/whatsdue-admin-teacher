@@ -8,20 +8,23 @@
         <!--notification menu start -->
         <div class="pull-left">
             <img id="logo" src="/ember/images/whatsdue-logo.png"/>
-            <button {{action 'modal' 'dashboard.message.email.invite'}} class="btn btn-primary col-md-7 pull-right">
-                Invite
-            </button>
+
         </div>
-        <div class="menu-right">
-            {{user.first_name}}
-            <a {{action 'modal' 'dashboard.newCourse' }}>
-                Add Course
-            </a>
+
+
+        <div class="menu-right ">
+
             <ul class="notification-menu">
+                <li>
+                    <a {{action 'modal' 'dashboard.message.email.invite'}} class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        Invite Users <i class="fa fa-users"></i>
+                    </a>
+                </li>
                 <li>
                     <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
 
-                        <i class="fa fa-info-circle"></i>
+                        <i class="fa fa-info-circle"></i>            {{user.first_name}}
+
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-usermenu pull-right">

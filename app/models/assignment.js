@@ -5,7 +5,9 @@ export default DS.Model.extend({
     assignment_name:     DS.attr('string'),
     description:         DS.attr('string'),
     due_date:            DS.attr('string'),
-    archived:            DS.attr('boolean'),
+    time_of_day:         DS.attr('string',  {defaultValue: "Morning"}),
+    archived:            DS.attr('boolean', {defaultValue: false}),
+    time_visible:         DS.attr('boolean', {defaultValue: false}),
     course_id:           DS.belongsTo('course'),
     dueDate: function(){
         return moment(this.get('due_date')).format('ddd MMMM Do');
@@ -16,6 +18,9 @@ export default DS.Model.extend({
     timestamp: function(){
         return moment(this.get('due_date')).format('X');
     }.property('due_date'),
+    due_time: function(){
+        return moment(this.get('timestamp'), "X").format('H:mm');
+    }.property('timestamp'),
     hidden: function(){
         if (moment().isAfter(this.get('due_date')) == true){
             return "hidden";
@@ -23,9 +28,6 @@ export default DS.Model.extend({
             return " ";
         }
     }.property('due_date'),
-    changed: function(){
-        // Changed
-    }.observes('description').on('init'),
-    checked:            DS.attr('boolean', {defaultValue: false})
+
 });
 

@@ -111,14 +111,14 @@ function courseUpdate(){
 }
 
 
-function resizePage(){
-    var sidebar = $('.sidebar.panel');
-    sidebar.width(sidebar.parent('div').width())
-}
-$( window ).resize(function(){
-    var sidebar = $('.sidebar.panel');
-    sidebar.width(sidebar.parent('div').width())
-});
+//function resizePage(){
+//    var sidebar = $('.sidebar.panel');
+//    sidebar.width(sidebar.parent('div').width())
+//}
+//$( window ).resize(function(){
+//    var sidebar = $('.sidebar.panel');
+//    sidebar.width(sidebar.parent('div').width())
+//});
 
 
 function scrollToId(id){

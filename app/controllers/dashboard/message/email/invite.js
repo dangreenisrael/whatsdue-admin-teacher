@@ -5,7 +5,10 @@ export default Ember.Controller.extend({
         // this.get('model').filterBy('completed',false).filterBy('archived',false).filterBy('overdue',true).filterBy('hidden',false).sortBy('due_date');
         return this.get('model').filterBy('archived',false);
     }.property(),
-    selectedClasses: [],
+    selectedClasses: function(){
+        return [];
+        return this.get('model').filterBy('archived',false);
+    }.property(),
     emailMessage: function(){
         var message =
             "Hi Class, \nI am now putting all of your assignments on the WhatsDue app.\n" +
@@ -54,8 +57,7 @@ export default Ember.Controller.extend({
 
         },
         close: function(){
-            this.get('model').rollback();
-            this.transitionToRoute('main');
+            return true;
         }
     }
 });

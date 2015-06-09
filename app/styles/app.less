@@ -10,10 +10,16 @@ body{
 }
 
 .main-content{
-  margin:auto;
-  max-width: 960px;
+  margin-left: auto;
 }
 
+.wrapper{
+  padding: 40px;
+}
+
+.bootstrap-timepicker-widget{
+  z-index: 2000;
+}
 .noselect {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -43,17 +49,61 @@ input:read-only {
   min-height: 0;
 }
 
-.modal-body input{
-  width: 100%!important;
-  min-height: 50px;
-}
 
 .modal-body{
+    max-height: 420px;
+    overflow-y: auto;
+    textarea{
+      margin-top: 20px;
+      height: 170px;
+    }
+    #date{
+      @media (max-width: 600px) {
+        width: 96%;
+      }
+      width:96%!important;
+    }
+    .col-md-5 .form-group{
+      margin-left: 0;
+    }
+    div.radio{
+      margin-top: 5px;
+      .input-group{
+        padding-bottom: 6px;
+        .input-group-addon{
+          min-width: 40px;
+          max-width: 40px;
+        }
+        input{
+          margin-left: 0;
+        }
+      }
+
+    }
+  input, button{
+    border: 1px solid #ccc;
+    width: 100%;
+    height: 40px;
+    font-size: 14px;
+    text-align: center;
+    border-radius: 6px;
+  }
+  .timePicker{
+    padding: 0;
+  }
+
   #assignment-name{
     margin-bottom: 17px;
   }
   .bootstrap-timepicker-widget.dropdown-menu:before, .bootstrap-timepicker-widget.dropdown-menu:after {
       display: none !important;
+  }
+  .time-buttons{
+    position: absolute;
+    right: 15px;
+    .btn-group{
+      z-index: 10;
+    }
   }
 }
 
@@ -63,14 +113,7 @@ input:read-only {
 }
 
 
-.modal-body{
-  min-height: 210px;
-}
 
-.modal .modal-body {
-  max-height: 420px;
-  overflow-y: auto;
-}
 
 .sorting.asc:after{
   font-family: FontAwesome, sans-serif;
@@ -172,39 +215,12 @@ ul li{
   margin-top: -10px;
 }
 
-.modal-body {
-  textarea{
-    height: 152px;
-  }
-  #date{
-    @media (max-width: 600px) {
-      width: 96%;
-    }
-    width:96%!important;
-  }
-  .col-md-5 .form-group{
-    margin-left: 0;
-  }
-  div.radio{
-    margin-top: 5px;
-    .input-group{
-      padding-bottom: 6px;
-      .input-group-addon{
-        min-width: 40px;
-        max-width: 40px;
-      }
-      input{
-        margin-left: 0;
-      }
-    }
 
-  }
-}
 
 
 .sidebar{
-  margin-top: 20px;
   position: fixed;
+  left: 40px;
   @media (max-width: 767px) {
     display: none;
   }
@@ -261,7 +277,17 @@ ul li{
   }
 }
 
-.invite
+.invite{
+  ul.checkbox, ul.checkbox:hover{
+    border: 1px #ccc solid;
+    border-radius: 5px;
+    padding: 10px!important;
+    margin-bottom: 10px;
+  }
+  .checkbox input {
+      cursor: pointer!important;
+  }
+}
 
 
 .header-section{
@@ -274,7 +300,6 @@ ul li{
   }
 }
 ul.courses{
-  margin-top:20px;
   @media (max-width: 767px) {
     padding-left: 0;
   }
