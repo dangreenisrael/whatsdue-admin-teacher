@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 /* global CustomFunctions */
 export default Ember.Controller.extend({
+    user:{},
     init: function(){
         var controller = this;
         Ember.$.get("/api/teacher/user", function( data ) {

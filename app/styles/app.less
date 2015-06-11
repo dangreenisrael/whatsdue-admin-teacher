@@ -20,23 +20,48 @@ body{
 .bootstrap-timepicker-widget{
   z-index: 2000;
 }
-.noselect {
+.noselect, .bootstrap-timepicker-widget span {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  cursor: default;
 }
 
 .pointer{
   cursor: pointer;
 }
 
+.handle{
+  cursor: move;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+
+}
+.handle.fa-sort:before{
+  font-size: 20px;
+}
+.is-dragging{
+  z-index: 9999;
+  background-color: rgba(9, 97, 173, 0.9)!important;
+  color: white !important;
+  padding: 20px!important;
+}
 input:read-only {
   background-color: white!important;
   cursor: pointer!important;
 }
+textarea {
+  resize: none;
+}
+
 .sticky-header .header-section{
   left: 0;
 }
@@ -80,21 +105,35 @@ input:read-only {
       }
 
     }
-  input, button{
-    border: 1px solid #ccc;
-    width: 100%;
-    height: 40px;
-    font-size: 14px;
-    text-align: center;
-    border-radius: 6px;
-  }
-  .timePicker{
-    padding: 0;
+  .assignment-modal{
+    input, button{
+      border: 1px solid #ccc;
+      width: 100%;
+      height: 40px;
+      font-size: 14px;
+      text-align: center;
+      border-radius: 6px;
+    }
+    .timePicker{
+      padding: 0;
+    }
+    #assignment-name{
+      margin-bottom: 17px;
+    }
+    .dropdown-menu{
+      display: block;
+      left: auto;
+    }
+    .dropdown-toggle{
+      position: absolute;
+      top: 0;
+      right: 10px;
+      cursor: pointer;
+      display: block;
+      padding: 11px 10px
+    }
   }
 
-  #assignment-name{
-    margin-bottom: 17px;
-  }
   .bootstrap-timepicker-widget.dropdown-menu:before, .bootstrap-timepicker-widget.dropdown-menu:after {
       display: none !important;
   }
@@ -221,12 +260,11 @@ ul li{
 .sidebar{
   position: fixed;
   left: 40px;
+  overflow: scroll;
+  top:90px;
+  bottom: 20px;
   @media (max-width: 767px) {
     display: none;
-  }
-  .panel-body{
-    max-height: 350px;
-    overflow-y: auto;
   }
   ul {
     padding-left: 0;
@@ -239,9 +277,7 @@ ul li{
       -moz-border-radius: 3px;
       border-radius: 3px;
       position: relative;
-      cursor: pointer;
       list-style: none;
-
       font-size: 14px;
       background: #fff;
       border-bottom: 1px dotted rgba(0, 0, 0, 0.2);

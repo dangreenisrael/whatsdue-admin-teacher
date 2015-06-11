@@ -5,6 +5,8 @@ import Ember from "ember";
 
 export default Ember.Component.extend({
     didInsertElement: function(){
-        Ember.$('#timepicker').timepicker();
+        Ember.$('#timepicker').timepicker(
+            {'showInputs': false}
+        );
     }
 });

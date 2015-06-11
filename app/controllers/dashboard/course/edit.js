@@ -7,7 +7,13 @@ export default Ember.Controller.extend({
             return true;
         },
         remove: function(){
-            this.get('model').destroyRecord();
+            var model = this.get('model');
+            var courseName = model.get('course_name');
+            var dialogue = confirm("Press OK to delete "+courseName);
+            if (dialogue == true) {
+                model.destroyRecord();
+            } else {
+            }
             return true;
         },
         close: function(){

@@ -19,7 +19,7 @@ export default DS.Model.extend({
         return moment(this.get('due_date')).format('X');
     }.property('due_date'),
     due_time: function(){
-        return moment(this.get('timestamp'), "X").format('H:mm');
+        return moment(this.get('timestamp'), "X").format('h:mm A');
     }.property('timestamp'),
     hidden: function(){
         if (moment().isAfter(this.get('due_date')) == true){

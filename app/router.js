@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 var Router = Ember.Router.extend({
-  location: 'hash'
+  location: 'none'
 });
 
 Router.map(function() {

@@ -1,36 +1,12 @@
 <div class="row">
         <!-- page heading start-->
-    <div class="col-sm-3 sidebar">
-        <section class="panel">
-            <header class="panel-heading">
-                My Courses
-
-            </header>
-            <div class="panel-body">
-                <ul class="draggable">
-                    {{#each course in model}}
-                        {{#unless course.archived}}
-                            {{scroll-to course.id course.course_name}}
-                        {{/unless}}
-                    {{/each}}
-
-                </ul>
-
-            </div>
-            <div class="panel-footer">
-                <button class="btn btn-primary" {{action 'modal' 'dashboard.newCourse' }}>
-                    Add Course
-                </button>
-            </div>
-        </section>
-    </div>
+        {{course-bar courses=model savedOrder=courseOrder modal="modal"}}
     <!-- page heading end-->
     <div class="col-sm-3">
 
     </div>
     <div class="col-sm-9">
         <ul class="courses">
-
         {{#each course in model}}
             {{#unless course.archived}}
                 {{course-panes course=course modal="modal"}}

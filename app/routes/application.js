@@ -4,7 +4,6 @@ export default Ember.Route.extend({
 
     actions: {
         modal: function(route, param){
-            console.log(param);
             if (param === undefined){
                 this.transitionTo(route);
             } else if (param.constructor === Array){

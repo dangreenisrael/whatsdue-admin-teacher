@@ -3,26 +3,16 @@
     <h4 class="modal-title">{{assignment_name}} {{headingSeparator}} <strong>{{due_date_human_readable}}</strong> ({{course_name}})</h4>
 </div>
 <div class="modal-body">
-    <div class="form-group">
+    <div class="form-group assignment-modal">
         <div class="col-md-5">
             <div class="form-group">
-                {{bootstrap-datepicker-inline value=due_date_raw daysOfWeekDisabled="0,6" startDate=due_date_raw}}
+                {{bootstrap-datepicker-inline value=due_date_raw daysOfWeekDisabled="0,6" startDate=due_date_raw }}
             </div>
         </div>
         <div class="col-md-7">
             <div class="row">
                 <div class="col-sm-5">
-                    {{#if edit}}
-                        {{
-                        input type="text"
-                        value=assignment_name
-                        maxlength="12"
-                        class="pull-left form-control"
-                        placeholder="Category"
-                        }}
-                    {{else}}
-                        {{type-dropdown selection=assignment_name}}
-                    {{/if}}
+                    {{type-dropdown selection=assignment_name}}
                 </div>
                 <div class="col-sm-4 timePicker">
                     {{#if timepickerEnabled}}
@@ -37,7 +27,7 @@
                     {{switchery-checkbox checked=timepickerEnabled}}
                 </div>
             </div>
-            {{textarea id="description" value=description maxlength="250" class="pull-left form-control" placeholder="Type homework here" }}
+            {{textarea id="assignmentDescription" value=description class="pull-left form-control" placeholder="Type homework here" }}
         </div>
     </div>
 </div>

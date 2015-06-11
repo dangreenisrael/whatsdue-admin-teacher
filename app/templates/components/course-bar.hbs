@@ -1,0 +1,32 @@
+<div class="col-sm-3 sidebar">
+    <section class="panel">
+        <header class="panel-heading">
+            My Courses
+        </header>
+        <div class="panel-body">
+            {{#sortable-group tagName="ul" onChange="reorderItems" as |group|}}
+                {{#each course in courses}}
+                    {{#unless course.archived}}
+                        {{#sortable-item tagName="li" model=course group=group handle=".handle"}}
+                            <i class="fa fa-edit pointer" {{action 'modal''dashboard.course.edit' course.id}}></i>
+                               <span class="handle">
+                                   {{course.course_name}}
+                               </span>
+                            <i class="pull-right fa fa-sort handle"></i>
+
+                        {{/sortable-item}}
+                    {{/unless}}
+                {{/each}}
+            {{/sortable-group}}
+
+            <!--{scroll-to course.id course.course_name}}-->
+
+
+        </div>
+        <div class="panel-footer">
+            <button class="btn btn-primary" {{action 'modal' 'dashboard.newCourse' }}>
+                Add Course
+            </button>
+        </div>
+    </section>
+</div>

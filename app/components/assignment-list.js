@@ -4,12 +4,15 @@
 import Ember from "ember";
 
 export default Ember.Component.extend(Ember.SortableMixin,{
-    name: "",
     sort: "desc",
+    time: "sorting",
     sorted : function(){
         return Ember.ArrayController.create({
+            sortProperties: ['timestamp'],
+            sortAscending: true,
             content : this.get('assignments')
-        });
+        })
+
     }.property(),
     actions: {
         sortBy: function(property) {

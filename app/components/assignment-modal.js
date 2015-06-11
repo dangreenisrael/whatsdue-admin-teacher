@@ -54,5 +54,14 @@ export default Ember.Component.extend({
                 Ember.$('#timepicker').click();
             },5)
         }
-    }.observes('timepickerEnabled')
+    }.observes('timepickerEnabled'),
+    watchDateChange: function(){
+            Ember.$('#assignmentDescription').focus();
+    }.observes('due_date_raw','timepickerEnabled'),
+    startUp: function(){
+        console.log('init');
+        setTimeout(function(){
+            Ember.$('#assignmentDescription').focus();
+        },500)
+    }.on('init')
 });

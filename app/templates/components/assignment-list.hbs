@@ -11,17 +11,16 @@
         <tbody>
             {{#each assignment in sorted.arrangedContent}}
                 {{#unless assignment.archived}}
-                    <tr {{bind-attr class=assignment.id}} >
-                        <!--<td>-->
-                        <!--{input type="checkbox" checked=assignment.checked}}-->
-                        <!--</td>-->
-                        <td {{action 'click' 'dashboard.course.assignment.edit' assignment.course_id.id assignment.id }}>
+                    <tr>
+                        <td  class="fa fa-edit" {{action 'click' 'dashboard.course.assignment.edit' assignment.course_id.id assignment.id }}>
                             <span class="hidden"> {{assignment.timestamp}} </span>
                             {{assignment.dueDate}}
                         </td>
                         <td {{action 'click' 'dashboard.course.assignment.edit' assignment.course_id.id assignment.id }}>
                             {{#if assignment.time_visible}}
                                 {{assignment.due_time}}
+                            {{else}}
+                                -------------
                             {{/if}}
                         </td>
                         <td {{action 'click' 'dashboard.course.assignment.edit' assignment.course_id.id assignment.id}}>
@@ -30,6 +29,7 @@
                         <td{{action 'click' 'dashboard.course.assignment.edit' assignment.course_id.id assignment.id}}>
                             {{description-text assignment.description}}
                         </td>
+
                     </tr>
                 {{/unless}}
             {{/each}}

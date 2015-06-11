@@ -1,26 +1,24 @@
 <!-- Be sure to add the rl-dropdown-toggle class to your dropdown toggle element -->
-<div class="{{dropdownVisibility}}">
-    {{#rl-dropdown-container class="dropdown"}}
-        {{#rl-dropdown-toggle class="btn btn-default"}}
-            {{selection}} <span class="caret"></span>
-        {{/rl-dropdown-toggle}}
+{{input
+    type="text" id="assignmentCategory"
+    value=selection maxlength="12"
+    class="rl-dropdown-toggle pull-left form-control"
+    placeholder="Category" action="select" on="enter"
+}}
 
-        {{#rl-dropdown tagName="ul" class="dropdown-menu" closeOnChildClick="a"}}
+<i class="rl-dropdown-toggle fa fa-sort-down dropdown-toggle" {{action "toggleDropdown"}}></i>
+{{#if dropdownExpanded}}
+    <!-- Be sure to add the rl-dropdown class to your dropdown element -->
+    <div class="rl-dropdown">
+        <ul class="dropdown-menu">
             {{#each item in options}}
-                <li {{action 'select' item}}><a>{{item}}</a></li>
+                <li {{action 'select' item}}>
+                    <a>
+                        {{item}}
+                    </a>
+                </li>
             {{/each}}
-            <li {{action 'customize'}}><a>Custom <i class="fa fa-plus-circle"></i></a></li>
-        {{/rl-dropdown}}
-    {{/rl-dropdown-container}}
-</div>
-
-<div class="{{inputVisibility}}">
-    {{
-        input type="text"
-        value=selection
-        maxlength="12"
-        class="pull-left form-control"
-        placeholder="Category"
-    }}
-
-</div>
+            <li {{action 'select' ""}}><a>Custom <i class="fa fa-plus-circle"></i></a></li>
+        </ul>
+    </div>
+{{/if}}

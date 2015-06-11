@@ -35,7 +35,8 @@
     "ember-disable-proxy-controllers": "^1.0.0",
     "ember-export-application-global": "^1.0.2",
     "ember-multiselect-checkboxes": "^0.2.1",
-    "ember-rl-dropdown": "^0.2.3"
+    "ember-rl-dropdown": "^0.2.3",
+    "ember-sortable": "1.2.0"
   },
   "dependencies": {
     "ember-cli-bootstrap-datepicker": "0.3.4",
