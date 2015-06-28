@@ -4,7 +4,6 @@
 
 @dark-blue: #374152;
 
-
 body{
   background-color:  #eff0f4;
 }
@@ -13,6 +12,9 @@ body{
   margin-left: auto;
 }
 
+#main{
+  height: 100vh;
+}
 .wrapper{
   padding: 40px;
 }
@@ -20,7 +22,7 @@ body{
 .bootstrap-timepicker-widget{
   z-index: 2000;
 }
-.noselect, .bootstrap-timepicker-widget span {
+.no-select, .bootstrap-timepicker-widget span {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
@@ -42,8 +44,6 @@ body{
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-
-
 }
 .handle.fa-sort:before{
   font-size: 20px;
@@ -70,6 +70,7 @@ textarea {
   margin-right: 0;
 }
 
+
 .main-content{
   min-height: 0;
 }
@@ -83,9 +84,6 @@ textarea {
       height: 170px;
     }
     #date{
-      @media (max-width: 600px) {
-        width: 96%;
-      }
       width:96%!important;
     }
     .col-md-5 .form-group{
@@ -220,33 +218,21 @@ ul li{
   }
 }
 
-.datepicker{
-  @media (max-width: 767px){
-    th.switch{
-      font-size: 22px;
-    }
-    td, th{
-      font-size: 20px;
-      padding: 8px!important;
-    }
-  }
-}
 .panel-body {
-  th.due-date{
-      width: 150px;
+  th{
+    border-bottom: none!important;
   }
-  th.name {
-      width: 150px;
+  .date{
+      width: 140px;
+  }
+  .time{
+    width: 100px;
+  }
+  .category{
+    width: 140px;
   }
 
-  @media (max-width:992px) {
-    th:first-of-type{
-      width: 20px;
-    }
-    th:nth-of-type(3), td:nth-of-type(3){
-      display: none;
-    }
-  }
+
 }
 
 
@@ -260,57 +246,50 @@ ul li{
 .sidebar{
   position: fixed;
   left: 40px;
-  overflow: scroll;
+  overflow: visible;
   top:90px;
-  bottom: 20px;
-  @media (max-width: 767px) {
-    display: none;
-  }
-  ul {
-    padding-left: 0;
-    margin-top: -10px;
-    display: inline;
-
-    li {
-      padding: 17px 0;
-      -webkit-border-radius: 3px;
-      -moz-border-radius: 3px;
-      border-radius: 3px;
-      position: relative;
-      list-style: none;
-      font-size: 14px;
-      background: #fff;
-      border-bottom: 1px dotted rgba(0, 0, 0, 0.2);
+  .panel{
+    position: relative;
+    @panel-height: 60vh;
+    .panel-body {
+      position: absolute;
+      width: 100%;
+      height: @panel-height;
+      overflow: auto;
+    }
+    .panel-footer{
+      margin-top: @panel-height;
     }
 
-    :last-of-type{
-      border-bottom: none;
-      padding-bottom: 5px;
-    }
-    :nth-of-type(1){
-      padding-top: 5px;
-    }/*
-    :nth-of-type(1){
-      padding: 0;
-      height: 0;
-      border: none;
-    }
-    */
+    ul {
+      padding-left: 0;
+      margin-top: -10px;
+      display: inline;
 
-    .fa-sort{
-      top:1px;
-      padding-right: 10px;
-      cursor: move;
-    }
-    .panel-heading {
-      cursor: move;
-    }
-    .ui-sortable-placeholder{
-      height: 40px;
-      background-color: #0075b0;
-      visibility: visible!important;
+      li {
+        padding: 17px 0;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+        position: relative;
+        list-style: none;
+        font-size: 14px;
+        background: #fff;
+        border-bottom: 1px dotted rgba(0, 0, 0, 0.2);
+      }
+
+      :nth-of-type(1){
+        padding-top: 5px;
+      }
+      .fa-sort{
+        top:1px;
+        padding-right: 10px;
+        cursor: move;
+      }
+
     }
   }
+
 }
 
 .invite{
@@ -335,12 +314,7 @@ ul li{
     }
   }
 }
-ul.courses{
-  @media (max-width: 767px) {
-    padding-left: 0;
-  }
 
-}
 
 /* Admin */
 .admin{
@@ -368,57 +342,15 @@ ul.courses{
   }
 }
 
-@media all and (max-width: 991px){
-  .modal{
-    .modal-body{
-      max-height: 480px;
-      .form-group{
-        .col-md-7{
-          margin-top: 170px
-        }
-      }
-    }
-  }
-
-  .panel{
-    .panel-body{
-
+@media (max-width: 670px){
+  .table {
+    .time, .category{
+      display: none;
     }
   }
 }
 
 
-@media (max-width: 600px) {
-  .wrapper .pull-left, .wrapper .pull-right{
-    float:none!important;
-  }
-
-  .panel-heading button {
-    margin-top: 10px;
-    width: 100%;
-  }
-  .notification-menu li:first-child .dropdown-menu{
-    margin-right: 0!important;
-  }
-
-  .modal{
-    .modal-footer{
-      button{
-        height: 60px;
-        font-size: 20px;
-      }
-    }
-  }
-
-  .notification-menu{
-    display: none;
-  }
-
-}
-
-
-@media (max-width: 767px) {
-  .zopim{
-    display: none!important;
-  }
+@media (max-width: 992px){
+  @import "phone";
 }

@@ -1,18 +1,10 @@
 <div class="row">
-        <!-- page heading start-->
-        {{course-bar courses=model savedOrder=courseOrder modal="modal"}}
-    <!-- page heading end-->
-    <div class="col-sm-3">
-
+    {{course-bar courses=model savedOrder=courseOrder modal="modal"}}
+    <div class="col-md-3">
     </div>
-    <div class="col-sm-9">
+    <div class="col-md-9">
         <ul class="courses">
-        {{#each course in model}}
-            {{#unless course.archived}}
-                {{course-panes course=course modal="modal"}}
-            {{/unless}}
-        {{/each}}
+            {{outlet 'main'}}
         </ul>
     </div>
 </div>
-

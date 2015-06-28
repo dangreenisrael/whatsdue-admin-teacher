@@ -29,8 +29,8 @@ export default Ember.Component.extend({
             type: 'PUT',
             dataType: 'text',
             data: order,
-            success: function (response) {
-                console.log("Rceived:" + order)
+            success: function () {
+                console.log("Rceived:" + order);
             }
         });
     },

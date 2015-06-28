@@ -11,15 +11,15 @@ export default Ember.Component.extend(Ember.SortableMixin,{
             sortProperties: ['timestamp'],
             sortAscending: true,
             content : this.get('assignments')
-        })
+        });
 
-    }.property(),
+    }.property('assignments'),
     actions: {
         sortBy: function(property) {
             this.get("sorted").set("sortProperties",[property]);
             this.get("sorted").toggleProperty('sortAscending');
 
-            if (property == "assignment_name"){
+            if (property === "assignment_name"){
                 this.set('name', "sorting");
                 this.set('time', "");
 
@@ -27,7 +27,7 @@ export default Ember.Component.extend(Ember.SortableMixin,{
                 this.set('name',"");
                 this.set('time',"sorting");
             }
-            if (this.get("sorted").get('sortAscending') == true){
+            if (this.get("sorted").get('sortAscending') === true){
                 this.set('sort', "desc");
             } else{
                 this.set('sort', "asc");

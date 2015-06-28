@@ -1,5 +1,5 @@
 import DS from 'ember-data';
-
+/* global moment */
 export default DS.Model.extend({
     body:               DS.attr('string'),
     title:              DS.attr('string'),

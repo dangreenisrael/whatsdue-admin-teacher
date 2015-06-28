@@ -7,13 +7,12 @@ export default Ember.ArrayController.extend({
         save: function() {
             var user = this.get('user');
             var userName = user.salutation + " " + user.first_name + " " + user.last_name;
-            var course = this.store.createRecord('course', {
+            this.store.createRecord('course', {
                 course_name: this.get('course_name'),
                 instructor_name: userName
             }).save();
 
-            $('#add-first-course').hide();
-            trackEvent("Added Course");
+            Ember.$('#add-first-course').hide();
             this.set('course_name', "");
             return true;
         }

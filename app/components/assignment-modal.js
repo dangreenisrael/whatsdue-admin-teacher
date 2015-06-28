@@ -2,6 +2,7 @@
  * Created by Dan on 6/5/15.
  */
 import Ember from "ember";
+/* global moment */
 
 export default Ember.Component.extend({
     timepickerEnabled: false,
@@ -9,7 +10,7 @@ export default Ember.Component.extend({
     headingSeparator: function(){
         var selection = this.get('assignment_name');
         if ( (selection === "Homework") || (selection ==="Project")){
-            return "due"
+            return "due";
         }
     }.property('assignment_name'),
     tomorrow: function(){
@@ -31,7 +32,7 @@ export default Ember.Component.extend({
     }.property('due_date_raw'),
     actions: {
         toggleTime: function(){
-            $('.js-switch').click();
+            Ember.$('.js-switch').click();
         },
         save: function() {
             var data = {
@@ -52,7 +53,7 @@ export default Ember.Component.extend({
         if (this.get('timepickerEnabled')){
             setTimeout(function(){
                 Ember.$('#timepicker').click();
-            },5)
+            },5);
         }
     }.observes('timepickerEnabled'),
     watchDateChange: function(){
@@ -62,6 +63,6 @@ export default Ember.Component.extend({
         console.log('init');
         setTimeout(function(){
             Ember.$('#assignmentDescription').focus();
-        },500)
+        },500);
     }.on('init')
 });

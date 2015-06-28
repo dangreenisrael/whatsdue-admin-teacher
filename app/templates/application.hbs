@@ -1,33 +1,32 @@
-
-<section>
+<section id="main">
     <!-- main content start-->
-    <div class="main-content" >
-
+    <div class="main-content {{mobileMenu}}" >
     <!-- header section start-->
     <div class="header-section">
         <!--notification menu start -->
         <div class="pull-left">
-            <img id="logo" src="/ember/images/whatsdue-logo.png"/>
-
+            <img {{action "toggleMenu"}} id="logo" src="/ember/images/whatsdue-logo.png"/>
         </div>
-
-
         <div class="menu-right ">
-
             <ul class="notification-menu">
-                <li>
-                    <a {{action 'modal' 'dashboard.message.email.invite'}} class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                <li id="invite-users">
+                    <a {{action 'inviteUsers'}} class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                         Invite Users <i class="fa fa-users"></i>
                     </a>
                 </li>
                 <li>
                     <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-
-                        <i class="fa fa-info-circle"></i>            {{user.first_name}}
-
+                        <i class="fa fa-info-circle"></i>
+                            {{user.first_name}}
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
+                        <li>
+                            <a {{action 'walkthrough' 'intro'}}>
+                                <i class="fa fa-envelope"></i>
+                                Walkthrough
+                            </a>
+                        </li>
                         <li><a href="mailto:aaron@whatsdueapp.com"><i class="fa fa-envelope"></i>Email Aaron</a></li>
                         <li><a href="skype:aarontaylor613?call"><i class="fa fa-phone"></i>Skype Aaron</a></li>
                         <li><a href="/logout"><i class="fa fa-sign-out"></i> Log Out</a></li>
@@ -38,21 +37,19 @@
         <!--notification menu end -->
     </div>
     <!-- header section end-->
-
     <!--body wrapper start-->
     <div class="wrapper">
         {{outlet "main"}}
     </div>
     <!--body wrapper end-->
-
     </div>
     <!-- main content end-->
 </section>
-<!--footer section start-->
-<footer id="mainFooter">
-    2014 &copy; WhatsDue
-</footer>
-<!--footer section end-->
+<!--&lt;!&ndash;footer section start&ndash;&gt;-->
+<!--<footer id="mainFooter">-->
+    <!--2014 &copy; WhatsDue-->
+<!--</footer>-->
+<!--&lt;!&ndash;footer section end&ndash;&gt;-->
 
 <div class="modal fade" id="Modal" tabindex="-1" role="dialog" >
     <div class="modal-dialog">
@@ -61,3 +58,7 @@
         </div>
     </div>
 </div>
+
+
+<!-- Tooltip walk through -->
+{{outlet "tooltips"}}

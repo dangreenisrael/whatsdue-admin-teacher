@@ -12,7 +12,7 @@ export default Ember.Component.extend(DropdownComponentMixin, {
             this.set('currentOption', value);
             this.set('selection', value);
             this.set('dropdownExpanded', false);
-            if (value==""){
+            if (value===""){
                 Ember.$('#assignmentCategory').focus();
             } else{
                 Ember.$('#assignmentDescription').focus();

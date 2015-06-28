@@ -5,9 +5,9 @@ export default Ember.ArrayController.extend({
     needs: "application",
     user: Ember.computed.alias("controllers.application.user"),
     courseOrder: function(){
+        var user = this.get('user');
         if (user.settings){
-            var order =  JSON.parse(user.settings).order;
-            return order;
+            return JSON.parse(user.settings).order;
         } else{
             return "";
         }

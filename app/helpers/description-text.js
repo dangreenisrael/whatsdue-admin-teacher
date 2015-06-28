@@ -1,5 +1,5 @@
 import Ember from "ember";
-/* global linkifyCordova */
+/* global linkify */
 
 export default Ember.Handlebars.makeBoundHelper( function(text) {
     if (typeof text === "undefined") {

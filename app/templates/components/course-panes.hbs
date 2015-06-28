@@ -2,22 +2,20 @@
     xmlns="http://www.w3.org/1999/html">
     <header class="panel-heading row">
         <div class="col-sm-4">
-            <a {{action 'modal''dashboard.course.edit' course.id}}>
+            <a {{action 'modal''dashboard.courses.course.edit' course.id}}>
                 {{course.course_name}} - <span class="student-count">{{course.totalSubscribers}} students</span>
-
             </a>
             <br/>
             <span class="student-count">Join Code</span>: {{course.course_code}}
         </div>
         <div class="col-sm-8 row">
-            <button {{action 'modal''dashboard.course.assignment.new' course.id}} class="btn btn-primary col-md-4 pull-right">
+            <button {{action 'modal''dashboard.courses.course.assignment.new' course.id}} class="btn btn-primary col-md-4 pull-right">
                 <!--<i class="fa fa-plus"></i>--> Add Assignment
             </button>
         </div>
 
     </header>
     <div class="panel-body">
-        <div class="col-xs-1"></div>
         {{assignment-list assignments=course.assignments action="modal"}}
     </div>
 </li>

@@ -1,8 +1,17 @@
 import Ember from 'ember';
 
-/* global CustomFunctions */
+/* global moment */
+
 export default Ember.Controller.extend({
     user:{},
+    mobileMenuToggle: true,
+    mobileMenu: function(){
+        if (this.get('mobileMenuToggle') === true){
+            return 'mobileMenuVisible';
+        } else{
+            return 'mobileMenuHidden'
+        }
+    }.property('mobileMenuToggle'),
     init: function(){
         var controller = this;
         Ember.$.get("/api/teacher/user", function( data ) {
@@ -18,7 +27,5 @@ export default Ember.Controller.extend({
                 sameElse : 'dddd MMM Do'
             }
         });
-
     }
 });
-

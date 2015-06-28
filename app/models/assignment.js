@@ -1,5 +1,5 @@
 import DS from 'ember-data';
-
+/* global moment */
 export default DS.Model.extend({
     admin_id:            DS.attr('string'),
     assignment_name:     DS.attr('string'),
@@ -22,7 +22,7 @@ export default DS.Model.extend({
         return moment(this.get('timestamp'), "X").format('h:mm A');
     }.property('timestamp'),
     hidden: function(){
-        if (moment().isAfter(this.get('due_date')) == true){
+        if (moment().isAfter(this.get('due_date')) === true){
             return "hidden";
         }else{
             return " ";
