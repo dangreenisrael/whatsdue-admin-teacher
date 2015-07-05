@@ -4,7 +4,7 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
     user:{},
-    mobileMenuToggle: true,
+    mobileMenuToggle: false,
     mobileMenu: function(){
         if (this.get('mobileMenuToggle') === true){
             return 'mobileMenuVisible';

@@ -5,13 +5,12 @@ export default DS.Model.extend({
     instructor_name:     DS.attr('string'),
     admin_id:            DS.attr('string'),
     course_code:         DS.attr('string'),
+    consumer_ids:        DS.attr('string'),
     archived:            DS.attr('boolean'),
-    device_ids:          DS.attr('string',  {defaultValue: "{}"}),
-    sortOrder:          1000,
-    assignments:         DS.hasMany('Assignment'),
+    sortOrder:           1000,
+    assignments:         DS.hasMany('assignment'),
     totalSubscribers: function(){
-        var users = JSON.parse(this.get('device_ids'));
+        var users = JSON.parse(this.get('consumer_ids'));
         return Object.keys(users).length;
-    }.property('device_ids')
+    }.property('consumer_ids')
 });
-

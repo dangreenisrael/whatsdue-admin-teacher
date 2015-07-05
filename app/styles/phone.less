@@ -4,7 +4,7 @@
 
 @menuWidth: 80%;
 @transitionTime: 0.2s;
-@transitionType: ease;
+@transitionType: linear;
 .sidebar{
   position: absolute;
   width:@menuWidth;
@@ -48,9 +48,9 @@
     transition: all @transitionTime @transitionType;
     width: 100%;
     position: absolute;
-    left: @menuWidth;
+    transform: translateX(@menuWidth);
     &.mobileMenuHidden{
-      left: 0;
+      transform: translateX(0);
     }
     &.mobileMenuVisible{
       .header-section {

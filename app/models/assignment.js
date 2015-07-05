@@ -27,7 +27,6 @@ export default DS.Model.extend({
         }else{
             return " ";
         }
-    }.property('due_date'),
-
+    }.property('due_date')
 });
 
