@@ -2,6 +2,9 @@
     <section class="panel">
         <header class="panel-heading">
             My Courses
+            <button class="btn btn-primary" {{action 'modal' 'dashboard.newCourse' }}>
+                Add Course
+            </button>
         </header>
         <div class="panel-body no-select" id="course-list">
             {{#sortable-group tagName="ul" onChange="reorderItems" as |group|}}
@@ -11,16 +14,13 @@
                             {{#link-to 'dashboard.courses.course' course tag="span" class="pointer"}}
                                 {{course.course_name}}
                             {{/link-to}}
-                            <i class="pull-right fa fa-sort handle"></i>
+                            <i class="pull-right fa fa-sor handle"></i>
                         {{/sortable-item}}
                     {{/unless}}
                 {{/each}}
             {{/sortable-group}}
         </div>
         <div class="panel-footer">
-            <button class="btn btn-primary" {{action 'modal' 'dashboard.newCourse' }}>
-                Add Course
-            </button>
         </div>
     </section>
 </div>

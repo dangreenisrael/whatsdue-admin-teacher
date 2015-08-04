@@ -7,13 +7,15 @@
             <th class="time">Time</th>
             <th class="category noselect pointer {{name}} {{sort}}" {{action 'sortBy' 'assignment_name' }}>Category</th>
             <th class="description noselect">Description </th>
+            <th class="edit noselect">Edit </th>
+
         </tr>
         </thead>
         <tbody>
             {{#each assignment in sorted.arrangedContent}}
                 {{#unless assignment.archived}}
                     <tr>
-                        <td  class="fa fa-edit date" {{action 'click' 'dashboard.courses.course.assignment.edit' assignment.course_id.id assignment.id }}>
+                        <td  class="date" {{action 'click' 'dashboard.courses.course.assignment.edit' assignment.course_id.id assignment.id }}>
                             <span class="hidden"> {{assignment.timestamp}} </span>
                             {{assignment.dueDate}}
                         </td>
@@ -29,6 +31,9 @@
                         </td>
                         <td class="description" {{action 'click' 'dashboard.courses.course.assignment.edit' assignment.course_id.id assignment.id}}>
                             {{description-text assignment.description}}
+                        </td>
+                        <td class="fa fa-edit" {{action 'click' 'dashboard.courses.course.assignment.edit' assignment.course_id.id assignment.id}}>
+
                         </td>
 
                     </tr>

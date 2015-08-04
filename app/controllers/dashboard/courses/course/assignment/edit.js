@@ -12,7 +12,6 @@ export default Ember.ObjectController.extend({
         },
         remove: function(){
             var model = this.get('model');
-            console.log(model);
             model.destroyRecord();
             return true;
         },

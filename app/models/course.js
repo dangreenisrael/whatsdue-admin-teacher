@@ -10,7 +10,7 @@ export default DS.Model.extend({
     sortOrder:           1000,
     assignments:         DS.hasMany('assignment'),
     totalSubscribers: function(){
-        var users = JSON.parse(this.get('consumer_ids'));
-        return Object.keys(users).length;
+        //var users = JSON.parse(this.get('consumer_ids'));
+        //return Object.keys(users).length;
     }.property('consumer_ids')
 });

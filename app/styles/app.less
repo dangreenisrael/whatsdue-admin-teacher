@@ -3,9 +3,34 @@
  */
 
 @dark-blue: #374152;
+@whatsdueBlue: #39bacd;
+
+
+@font-face {
+  font-family: 'gibson';
+  src: url('fonts/gibson-light.ttf');
+}
+
+@font-face {
+  font-family: 'gibson';
+  src: url('fonts/gibson.ttf');
+  font-weight: bold;
+}
+
+*:not(.glyphicon):not(.fa){
+  font-family: gibson, sans-serif!important;
+}
+
+.btn-primary{
+  background-color: @whatsdueBlue;
+  border-color: @whatsdueBlue;
+  color: white;
+  font-size: 16px;
+}
 
 body{
   background-color:  #eff0f4;
+  font-size: 15px;
 }
 
 .main-content{
@@ -75,45 +100,64 @@ textarea {
   min-height: 0;
 }
 
+.modal-content{
+  border-radius: 4px;
+}
+.modal-header{
+  background: @whatsdueBlue;
+  border-radius: 4px 4px 0 0;
+  h4{
+    font-size: 26px;
+  }
+  .close{
+    margin-top: 10px;
+  }
+}
 
+.modal-footer{
+  border-radius: 0 0 4px 4px;
+}
 .modal-body{
-    max-height: 420px;
-    overflow-y: auto;
-    textarea{
-      margin-top: 20px;
-      height: 170px;
-    }
-    #date{
-      width:96%!important;
-    }
-    .col-md-5 .form-group{
-      margin-left: 0;
-    }
-    div.radio{
-      margin-top: 5px;
-      .input-group{
-        padding-bottom: 6px;
-        .input-group-addon{
-          min-width: 40px;
-          max-width: 40px;
-        }
-        input{
-          margin-left: 0;
-        }
+  max-height: 420px;
+  overflow-y: auto;
+  textarea{
+    margin-top: 20px;
+    height: 170px;
+  }
+  #date{
+    width:96%!important;
+  }
+  .col-md-5 .form-group{
+    margin-left: 0;
+  }
+  div.radio{
+    margin-top: 5px;
+    .input-group{
+      padding-bottom: 6px;
+      .input-group-addon{
+        min-width: 40px;
+        max-width: 40px;
       }
-
+      input{
+        margin-left: 0;
+      }
     }
+
+  }
   .assignment-modal{
     input, button{
       border: 1px solid #ccc;
       width: 100%;
       height: 40px;
-      font-size: 14px;
+      font-size: 16px;
       text-align: center;
       border-radius: 6px;
     }
     .timePicker{
       padding: 0;
+    }
+    .active.day, .active.day:hover{
+      background: @whatsdueBlue;
     }
     #assignment-name{
       margin-bottom: 17px;
@@ -162,6 +206,7 @@ textarea {
 
 
 .panel-heading {
+  font-size: 17px;
   .padded{
     button{
       margin-top: 10px;
@@ -214,13 +259,18 @@ ul li{
 .panel-heading{
   .student-count{
     font-weight: 200;
-    font-size: 12px;
   }
 }
 
-.panel-body {
+.table {
   th{
     border-bottom: none!important;
+  }
+  td{
+    border-top: none!important;
+  }
+  tr{
+    border-bottom: 1px solid #ddd;;
   }
   .date{
       width: 140px;
@@ -257,6 +307,13 @@ ul li{
       height: @panel-height;
       overflow: auto;
     }
+    .panel-heading{
+      button{
+        float: right;
+        margin-top: -5px;
+        line-height: 16px;
+      }
+    }
     .panel-footer{
       margin-top: @panel-height;
     }
@@ -273,7 +330,6 @@ ul li{
         border-radius: 3px;
         position: relative;
         list-style: none;
-        font-size: 14px;
         background: #fff;
         border-bottom: 1px dotted rgba(0, 0, 0, 0.2);
       }
@@ -307,12 +363,34 @@ ul li{
 
 .header-section{
   .add-course{
-    font-size: 18px;
     margin: 15px;
     @media (min-width: 767px) {
       display: none;
     }
   }
+  .btn{
+    font-size: 16px;
+    &:hover{
+      color: white;
+      background: @whatsdueBlue;
+    }
+  }
+  .notification-menu {
+    .dropdown-menu-usermenu, .open .dropdown-toggle{
+      background: @whatsdueBlue;
+      color: white;
+      font-size: 16px;
+    }
+    .dropdown-menu {
+      &:after{
+        border-bottom: white;
+      }
+      li a{
+        font-size: 15px;
+      }
+    }
+  }
+
 }
 
 

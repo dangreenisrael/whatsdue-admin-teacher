@@ -55,7 +55,6 @@ export default Ember.Route.extend({
         },
         hideMenu: function() {
             if (this.controller.get('mobileMenuToggle') === true){
-                console.log('touched');
                 //this.controller.set('mobileMenuToggle', false);
             }
         }
