@@ -5,6 +5,7 @@ import Ember from 'ember';
 
 export default Ember.Component.extend( {
     launchJoyride: function(){
+        Foundation.global.namespace = '';
         Ember.$(document).foundation('joyride', 'start', {
             modal: false,
             template : { // HTML segments for tip layout

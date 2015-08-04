@@ -28,7 +28,10 @@ Router.map(function() {
             });
         });
     });
-    this.route('welcome', {path: 'welcome'});
+    this.route('walkthrough', function(){
+        this.route('intro', function(){
+        });
+    });
     this.route('user');
 });
 

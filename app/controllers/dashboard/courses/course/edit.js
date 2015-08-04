@@ -12,6 +12,7 @@ export default Ember.Controller.extend({
             var dialogue = confirm("Press OK to delete "+courseName);
             if (dialogue === true) {
                 model.destroyRecord();
+                this.transitionToRoute('dashboard');
             } else {
             }
             return true;

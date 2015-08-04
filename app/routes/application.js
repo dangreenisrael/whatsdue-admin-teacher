@@ -21,17 +21,14 @@ export default Ember.Route.extend({
             }
             Ember.$('#Modal').modal('show');
         },
-        save: function(){
+        save: function(courseId){
             Ember.$('#Modal').modal('hide');
-            this.transitionTo('dashboard.courses.course');
         },
-        close: function(){
+        close: function(courseId){
             Ember.$('#Modal').modal('hide');
-            this.transitionTo('dashboard.courses.course');
         },
-        remove: function(){
+        remove: function(courseId){
             Ember.$('#Modal').modal('hide');
-            this.transitionTo('dashboard.courses.course');
         },
         walkthrough: function(walkthrough){
             if (walkthrough === "intro" ){
