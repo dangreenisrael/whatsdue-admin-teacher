@@ -6,8 +6,10 @@ import Ember from "ember";
 export default Ember.Component.extend(Ember.SortableMixin,{
     sort: "desc",
     time: "sorting",
+    sortProperties: ['timestamp'],
+    sortAscending: true,
     sorted : function(){
-        return Ember.ArrayController.create({
+        return Ember.ArrayProxy.extend(Ember.SortableMixin).create({
             sortProperties: ['timestamp'],
             sortAscending: true,
             content : this.get('assignments')
@@ -34,7 +36,7 @@ export default Ember.Component.extend(Ember.SortableMixin,{
             }
         },
         click: function (route, course, assignment) {
-            this.sendAction('action', route, [course, assignment]);
+            this.sendAction('modal', route, [course, assignment]);
         }
     }
 });

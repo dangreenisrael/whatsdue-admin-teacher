@@ -1,14 +1,16 @@
 import DS from 'ember-data';
 /* global moment */
 export default DS.Model.extend({
-    admin_id:            DS.attr('string'),
     assignment_name:     DS.attr('string'),
     description:         DS.attr('string'),
     due_date:            DS.attr('string'),
     time_of_day:         DS.attr('string',  {defaultValue: "Morning"}),
     archived:            DS.attr('boolean', {defaultValue: false}),
     time_visible:        DS.attr('boolean', {defaultValue: false}),
-    course_id:           DS.belongsTo('course'),
+    statuses:              DS.hasMany('status', {
+        async: true
+    }),
+    course_id:           DS.belongsTo('course', {async: true}),
     dueDate: function(){
         return moment(this.get('due_date')).format('ddd MMMM Do');
     }.property('due_date'),

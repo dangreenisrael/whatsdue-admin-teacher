@@ -2,7 +2,7 @@
  * Created by Dan on 6/5/15.
  */
 import Ember from 'ember';
-
+/* global Foundation */
 export default Ember.Component.extend( {
     launchJoyride: function(){
         Foundation.global.namespace = '';

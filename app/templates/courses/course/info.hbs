@@ -1,0 +1,35 @@
+{{#bootstrap-modal}}
+    <div class="modal-header">
+        <button type="button" {{action 'close'}} class="close">×</button>
+        <h4 class="modal-title">{{model.course_name}}: Subscriber List</h4>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <div class="col-md-12">
+                <table class="table table-hover">
+                    <tbody>
+                    {{#each model.student_list as |student|}}
+                        <tr>
+                            <td>
+                                {{#if student.first_name}}
+                                    {{student.first_name}} {{student.last_name}}
+
+                                {{else}}
+                                    Anonymous
+                                {{/if}}
+                            </td>
+                            <td class="subscriber-role">
+                                {{student.role}}
+                            </td>
+
+                        </tr>
+                    {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button  class="btn btn-primary" type="button" {{action 'close'}} >Close</button>
+    </div>
+{{/bootstrap-modal}}

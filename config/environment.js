@@ -4,7 +4,7 @@ module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'whatsdue-admin-teacher',
     environment: environment,
-    baseURL: '/',
+    baseURL: '/secure/',
     contentSecurityPolicy: {
         'default-src': "*",
         'script-src': "'self' 'unsafe-inline' 'unsafe-eval'",

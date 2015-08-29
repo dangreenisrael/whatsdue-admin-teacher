@@ -10,7 +10,7 @@ export default Ember.Controller.extend({
 
     }.on('init'),
     classes: function(){
-        return this.store.all('course').filterBy('archived', false);
+        return this.get('model').filterBy('archived', false);
     }.property(),
     selectedClasses: function(){
         return [];
@@ -18,22 +18,31 @@ export default Ember.Controller.extend({
     }.property(),
     actions: {
         send: function() {
-            var data = this.get('model');
+            var email_list = this.get('emailAddresses'),
+                courseObjects = this.get('selectedClasses'),
+                courses = [];
+
+            if (courseObjects.length < 1){
+                alert("You must choose at least one course");
+                return false;
+            } else if(!email_list){
+                alert("You must enter at least one email address");
+                return false;
+            }
+            courseObjects.forEach(function (course) {
+                courses.push(course.id);
+            });
             var payload =
             {
                 email: {
-                    course_code: 	data.get('course_code'),
-                    course_name:	data.get('course_name'),
-                    email_list:     this.get('emailAddresses'),
-                    message:	    this.get('emailMessage')
+                    message:    "",
+                    courses:    courses,
+                    email_list: email_list
                 }
             };
-
-            var context = this;
-            context.transitionToRoute('main');
             Ember.$.ajax({
                 type: "POST",
-                url: "api/teacher/emails/invites",
+                url: "/api/teacher/emails/invites",
                 data: JSON.stringify(payload),
                 dataType: "json",
                 contentType: 'application/json; charset=UTF-8',
@@ -42,17 +51,16 @@ export default Ember.Controller.extend({
                      * Display bad emails
                      */
                     var invalidEmails = response.emails_invalid;
-                    console.log(invalidEmails);
                     if (invalidEmails.length > 0 ){
                         alert("The following email addresses aren't valid:\n" + invalidEmails.join(","));
                     }
                 },
                 error: function(){
-                    alert("Woops, There seems to have been some sort of error.");
+                    alert("Woops, There seems to have been some sort of error sending the invites.");
                     location.reload();
                 }
             });
-
+            return true;
         },
         close: function(){
             this.set('selectedClasses', []);

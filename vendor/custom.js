@@ -13,29 +13,10 @@ __insp.push(['wid', 2075519626]);
 
 /* End Inspectlet Embed Code */
 
-
-/* Extend jQuery */
-(function($){
-    $.expr[':'].text = function(obj, index, meta, stack){
-        return ($(obj).text() === meta[3])
-    };
-})(jQuery);
-
-
-function trackEvent(event, firstOption, firstValue, secondOption, secondValue){
-    firstOption = firstOption || null;
-    firstValue = firstValue || null;
-    secondOption = secondOption || null;
-    secondValue = secondValue || null;
-
-    var options = {};
-    options['username'] = user.email;
-    if (firstOption != null) {
-        options[firstOption] = firstValue;
-        if (secondOption != null) {
-            options[secondOption] = secondValue;
-        }
-    }
-
-    //ll('tagEvent', event, options);
-}
+//
+///* Extend jQuery */
+//(function($){
+//    $.expr[':'].text = function(obj, index, meta, stack){
+//        return ($(obj).text() === meta[3])
+//    };
+//})(jQuery);

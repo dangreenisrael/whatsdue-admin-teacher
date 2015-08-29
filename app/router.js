@@ -1,35 +1,38 @@
 import Ember from 'ember';
 
+
 var Router = Ember.Router.extend({
-  location: 'hash'
+    location: 'hash'
 });
 
 Router.map(function() {
-    this.route('dashboard', {path: '/'}, function(){
-        this.route('courses', function(){
-            this.route('course', {path: 'course/:course_id'}, function(){
-                this.route('edit');
-                this.route('assignment', function(){
-                    this.route('new');
-                    this.route('edit', {path:':assignment_id'});
-                });
-
+    this.route('courses', {path: '/'}, function(){
+        this.route('course', {path: 'course/:course_id'}, function(){
+            this.route('edit');
+            this.route('info');
+            this.route('assignment', function(){
+                this.route('new');
+                this.route('edit',   {path:':assignment_id/edit'});
+                this.route('status', {path:':assignment_id/status'})
             });
         });
+        this.route('new');
 
-        this.route('newCourse');
-        this.route('message', function(){
-            this.route('email', function(){
-                this.route('invite');
-            });
-            this.route('push', function(){
-                this.route('new');
-                this.route('history');
-            });
+    });
+
+    this.route('message', function(){
+        this.route('email', function(){
+            this.route('invite');
         });
     });
     this.route('walkthrough', function(){
-        this.route('intro', function(){
+        this.route('add-course', function(){
+        });
+    });
+    this.route('message', function(){
+        this.route('email', function(){
+            this.route('invite', function(){
+            });
         });
     });
     this.route('user');

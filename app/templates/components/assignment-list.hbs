@@ -1,43 +1,45 @@
-
 <table class="table table-hover">
-        <thead>
-        <tr>
-            <!--<th></th>-->
-            <th class="date noselect pointer {{time}} {{sort}}" {{action 'sortBy' 'timestamp'}} >Due Date</th>
-            <th class="time">Time</th>
-            <th class="category noselect pointer {{name}} {{sort}}" {{action 'sortBy' 'assignment_name' }}>Category</th>
-            <th class="description noselect">Description </th>
-            <th class="edit noselect">Edit </th>
+    <thead>
+    <tr>
+        <!--<th></th>-->
+        <th class="date noselect pointer {{time}} {{sort}}" {{action 'sortBy' 'timestamp'}} >Due Date</th>
+        <th class="time">Time</th>
+        <th class="category noselect pointer {{name}} {{sort}}" {{action 'sortBy' 'assignment_name' }}>Category</th>
+        <th class="description noselect">Description </th>
+        <th class="edit noselect">Edit </th>
 
-        </tr>
-        </thead>
-        <tbody>
-            {{#each assignment in sorted.arrangedContent}}
-                {{#unless assignment.archived}}
-                    <tr>
-                        <td  class="date" {{action 'click' 'dashboard.courses.course.assignment.edit' assignment.course_id.id assignment.id }}>
-                            <span class="hidden"> {{assignment.timestamp}} </span>
-                            {{assignment.dueDate}}
-                        </td>
-                        <td class="time" {{action 'click' 'dashboard.courses.course.assignment.edit' assignment.course_id.id assignment.id }}>
-                            {{#if assignment.time_visible}}
-                                {{assignment.due_time}}
-                            {{else}}
-                                -------------
-                            {{/if}}
-                        </td>
-                        <td class="category" {{action 'click' 'dashboard.courses.course.assignment.edit' assignment.course_id.id assignment.id}}>
-                            {{assignment.assignment_name}}
-                        </td>
-                        <td class="description" {{action 'click' 'dashboard.courses.course.assignment.edit' assignment.course_id.id assignment.id}}>
-                            {{description-text assignment.description}}
-                        </td>
-                        <td class="fa fa-edit" {{action 'click' 'dashboard.courses.course.assignment.edit' assignment.course_id.id assignment.id}}>
+    </tr>
+    </thead>
+    <tbody>
+        {{#each sorted.arrangedContent as |assignment|}}
+            {{#unless assignment.archived}}
+                <tr>
+                    <td  class="date" {{action 'click' 'courses.course.assignment.edit' assignment.course_id.id assignment.id }}>
+                        <span class="hidden"> {{assignment.timestamp}} </span>
+                        {{assignment.dueDate}}
+                    </td>
+                    <td class="time" {{action 'click' 'courses.course.assignment.edit' assignment.course_id.id assignment.id }}>
+                        {{#if assignment.time_visible}}
+                            {{assignment.due_time}}
+                        {{else}}
+                            -------------
+                        {{/if}}
+                    </td>
+                    <td class="category" {{action 'click' 'courses.course.assignment.edit' assignment.course_id.id assignment.id}}>
+                        {{assignment.assignment_name}}
+                    </td>
+                    <td class="description" {{action 'click' 'courses.course.assignment.edit' assignment.course_id.id assignment.id}}>
+                        {{description-text assignment.description}}
+                    </td>
+                    <td class="fa fa-edit edit" {{action 'click' 'courses.course.assignment.edit' assignment.course_id.id assignment.id}}>
 
-                        </td>
+                    </td>
+                    <td class="fa fa-edit status" {{action 'click' 'courses.course.assignment.status' assignment.course_id.id assignment.id}}>
+                        status
+                    </td>
 
-                    </tr>
-                {{/unless}}
-            {{/each}}
-        </tbody>
-    </table>
+                </tr>
+            {{/unless}}
+        {{/each}}
+    </tbody>
+</table>

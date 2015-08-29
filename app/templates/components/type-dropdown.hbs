@@ -3,7 +3,7 @@
     type="text" id="assignmentCategory"
     value=selection maxlength="12"
     class="rl-dropdown-toggle pull-left form-control"
-    placeholder="Category" action="select" on="enter"
+    placeholder="Category" enter='select'
 }}
 
 <i class="rl-dropdown-toggle fa fa-sort-down dropdown-toggle" {{action "toggleDropdown"}}></i>
@@ -11,7 +11,7 @@
     <!-- Be sure to add the rl-dropdown class to your dropdown element -->
     <div class="rl-dropdown">
         <ul class="dropdown-menu">
-            {{#each item in options}}
+            {{#each options as |item|}}
                 <li {{action 'select' item}}>
                     <a>
                         {{item}}

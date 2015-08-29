@@ -2,23 +2,35 @@
     <section class="panel">
         <header class="panel-heading">
             My Courses
-            <button class="btn btn-primary" {{action 'modal' 'dashboard.newCourse' }} id="addCourse">
+            <button class="btn btn-primary" {{action 'modal' 'courses.new' }} id="addCourse">
                 Add Course
             </button>
         </header>
         <div class="panel-body no-select" id="course-list">
-            {{#sortable-group tagName="ul" onChange="reorderItems" as |group|}}
-                {{#each course in courses}}
+            <ul>
+                {{#each courses as |course|}}
                     {{#unless course.archived}}
-                        {{#sortable-item tagName="li" model=course group=group handle=".handle"}}
-                            {{#link-to 'dashboard.courses.course' course tag="span" class="pointer"}}
+                        <li>
+                            {{#link-to 'courses.course' course tag="li" class="pointer"}}
                                 {{course.course_name}}
                             {{/link-to}}
-                            <i class="pull-right fa fa-sor handle"></i>
-                        {{/sortable-item}}
+                        </li>
                     {{/unless}}
                 {{/each}}
-            {{/sortable-group}}
+            </ul>
+
+            <!--{#sortable-group tagName="ul" onChange="reorderItems" as |group|}}-->
+                <!--{#each courses as |course|}}-->
+                    <!--{#unless course.archived}}-->
+                        <!--{#sortable-item tagName="li" model=course group=group handle=".handle"}}-->
+                            <!--{#link-to 'courses.course' course tag="span" class="pointer"}}-->
+                                <!--{course.course_name}}-->
+                            <!--{/link-to}}-->
+                            <!--<i class="pull-right fa fa-sor handle"></i>-->
+                        <!--{/sortable-item}}-->
+                    <!--{/unless}}-->
+                <!--{/each}}-->
+            <!--{/sortable-group}}-->
         </div>
         <div class="panel-footer">
         </div>

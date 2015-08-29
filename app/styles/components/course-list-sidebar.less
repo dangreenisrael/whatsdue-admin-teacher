@@ -1,0 +1,59 @@
+@import "../variables";
+
+.sidebar{
+  position: fixed;
+  left: 40px;
+  overflow: visible;
+  top:90px;
+  a{
+    color: @dark-blue;
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+  }
+  .panel{
+    position: relative;
+    @panel-height: 60vh;
+    .panel-body {
+      position: absolute;
+      width: 100%;
+      height: @panel-height;
+      overflow: auto;
+      padding-top: 0;
+    }
+    .panel-heading{
+      button{
+        float: right;
+        margin-top: -5px;
+        line-height: 16px;
+      }
+    }
+    .panel-footer{
+      margin-top: @panel-height;
+    }
+
+    ul {
+      padding-left: 0;
+      margin-top: -10px;
+      display: inline;
+
+      a {
+        padding: 17px 0;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+        position: relative;
+        list-style: none;
+        background: #fff;
+        border-bottom: 1px dotted rgba(0, 0, 0, 0.2);
+      }
+
+      .fa-sort{
+        top:1px;
+        padding-right: 10px;
+        cursor: move;
+      }
+
+    }
+  }
+}

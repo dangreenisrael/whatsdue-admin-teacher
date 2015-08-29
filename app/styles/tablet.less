@@ -1,0 +1,72 @@
+@menuWidth: 300px;
+@transitionTime: 0.2s;
+@transitionType: ease;
+.sidebar{
+  position: absolute;
+  width:@menuWidth;
+  left: -@menuWidth;
+  height: 100vh;;
+  top: 0;
+  background-color: white;
+  padding: 0;
+  box-shadow: -3px 3px 3px #ddd;
+  .fa-sort{
+    display: none;
+  }
+  .panel{
+    border-radius: 0;
+    height: 100%;
+    padding-top: 50px;
+    margin-bottom: 0;
+    .panel-body{
+      position: relative;
+      height: auto;
+    }
+    .panel-footer{
+      border: none;
+      margin-top: auto;
+      background: none;
+    }
+  }
+
+}
+
+#main{
+  .header-section {
+    position: fixed;
+    -webkit-transition: all @transitionTime @transitionType;
+    -moz-transition: all @transitionTime @transitionType;
+    transition: all @transitionTime @transitionType;
+    #logo{
+      display: none;
+    }
+    #menu-toggle{
+      display: inline-block;
+      padding: 15px;
+      height: 54px;
+      position: absolute;
+    }
+  }
+  .main-content{
+    -webkit-transition: all @transitionTime @transitionType;
+    -moz-transition: all @transitionTime @transitionType;
+    transition: all @transitionTime @transitionType;
+    width: 100%;
+    min-height: 100vh;
+    position: absolute;
+    transform: translate3d(@menuWidth, 0, 0);
+    -webkit-transform:translate3d(@menuWidth, 0, 0);
+    &.mobileMenuHidden{
+      transform: translate3d(0, 0, 0);
+      -webkit-transform:translate3d(0,0,0);
+    }
+    &.mobileMenuVisible{
+      .header-section {
+        //left: @menuWidth;
+      }
+    }
+  }
+  .courses{
+    padding: 0;
+  }
+}

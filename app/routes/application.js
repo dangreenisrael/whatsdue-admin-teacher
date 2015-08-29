@@ -1,13 +1,33 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
+    renderTemplate: function() {
+        this.render({ outlet: 'main' });
+        if(this.store.peekAll('course').filterBy('archived', false).length < 1){
+            this.transitionTo('courses.new');
+        }
+    },
+    model: function() {
+        this.store.findAll('assignment');
+        return this.store.findAll('course');
+    },
     checkLogin: function(){
         Ember.$.get("/api/teacher/user").fail(function(){
                 alert('You have been logged out due to inactivity');
                 window.location = "/login";
             });
     },
+    goBack: function(){
+        var courseId = this.controllerFor('application').get('courseId');
+        this.transitionTo('courses.course', courseId);
+    },
     actions: {
+        didTransition: function(){
+            var router = this;
+            Ember.$('#Modal').on('hide.bs.modal', function () {
+                router.goBack();
+            });
+        },
         modal: function(route, param){
             this.checkLogin();
             if (param === undefined){
@@ -19,24 +39,13 @@ export default Ember.Route.extend({
             } else{
                 this.transitionTo(route, param);
             }
-            Ember.$('#Modal').modal('show');
         },
-        save: function(courseId){
-            Ember.$('#Modal').modal('hide');
-        },
-        close: function(courseId){
-            Ember.$('#Modal').modal('hide');
-        },
-        remove: function(courseId){
-            Ember.$('#Modal').modal('hide');
-        },
-        walkthrough: function(walkthrough){
-            if (walkthrough === "intro" ){
-                this.render('walkthrough/intro', {
-                    into: 'application',
-                    outlet: 'tooltips'
-                });
-            }
+        tooltip: function(walkthrough){
+            console.log('tooltip');
+            this.render(walkthrough, {
+                into: 'application',
+                outlet: 'tooltips'
+            });
         },
         inviteUsers: function(){
             this.checkLogin();
@@ -52,8 +61,20 @@ export default Ember.Route.extend({
         },
         hideMenu: function() {
             if (this.controller.get('mobileMenuToggle') === true){
-                //this.controller.set('mobileMenuToggle', false);
+                this.controller.set('mobileMenuToggle', false);
             }
+        },
+        close: function(){
+            this.goBack();
+        },
+        save: function(){
+            this.goBack();
+        },
+        remove: function(){
+            this.goBack();
+        },
+        send: function(){
+            this.goBack();
         }
     }
 });

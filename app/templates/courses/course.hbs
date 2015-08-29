@@ -1,0 +1,36 @@
+
+<li class="col-md-12 panel ui-state-default" id={{model.id}}>
+    <header class="panel-heading row">
+        <div class="col-sm-6">
+            {{#link-to 'courses.course.edit' model.id}}
+                {{model.course_name}}:
+            {{/link-to}}
+            &emsp;
+            {{#if model.totalStudents}}
+
+                {{#link-to 'courses.course.info' model.id tag="span" class="student-count"}}
+                    {{model.totalStudents}} Subscribers
+                {{/link-to}}
+            {{else}}
+                {{#link-to 'message.email.invite' tag="span" class="student-count"}}
+                    Invite Students and Parents
+                {{/link-to}}
+            {{/if}}
+            <br/>
+            <span class="student-count">Join Code:</span>&emsp;
+            {{#link-to 'message.email.invite' tag="span"}}
+                {{model.course_code}}
+            {{/link-to}}
+        </div>
+        <div class="col-sm-6 row">
+            {{#link-to 'courses.course.assignment.new' model.id id="add-assignment" class="btn btn-primary col-md-4 pull-right"}}
+                Add Assignment
+            {{/link-to}}
+
+        </div>
+    </header>
+    <div class="panel-body">
+        {{assignment-list assignments=model.assignment_list courseId=model.id modal="modal" firstAssignment="firstAssignment"}}
+    </div>
+</li>
+
