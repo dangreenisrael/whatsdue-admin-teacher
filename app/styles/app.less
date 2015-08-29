@@ -1,0 +1,24 @@
+/*
+ * Colors
+ */
+@import "variables";
+@import "components/course-panel";
+@import "components/course-list-sidebar";
+@import "main";
+
+@media (max-width: 1199px){
+  @import "tablet";
+}
+
+@media (min-width: 767px) {
+  .show-mobile{
+    display: none;
+  }
+}
+@media (max-width: 766px){
+  @import "phone";
+  .hide-mobile{
+    display: none;
+  }
+}
+
