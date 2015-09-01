@@ -13,7 +13,7 @@ Router.map(function() {
             this.route('assignment', function(){
                 this.route('new');
                 this.route('edit',   {path:':assignment_id/edit'});
-                this.route('status', {path:':assignment_id/status'})
+                this.route('status', {path:':assignment_id/status'});
             });
         });
         this.route('new');

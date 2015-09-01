@@ -1,4 +1,5 @@
 import Ember from 'ember';
+/* global mixpanel */
 
 export default Ember.Controller.extend({
     setCourses: function(){
@@ -23,9 +24,15 @@ export default Ember.Controller.extend({
                 courses = [];
 
             if (courseObjects.length < 1){
+                mixpanel.track('Invite Users Failed', {
+                    Reason: "No course chosen"
+                });
                 alert("You must choose at least one course");
                 return false;
             } else if(!email_list){
+                mixpanel.track('Invite Users Failed', {
+                    Reason: "No emails given"
+                });
                 alert("You must enter at least one email address");
                 return false;
             }
@@ -50,12 +57,20 @@ export default Ember.Controller.extend({
                     /*
                      * Display bad emails
                      */
+                    mixpanel.track('Invited Users',{
+                        "Total Courses":  courseObjects.length,
+                        "Total Valid Emails": response.emails_valid.length,
+                        "Total Invalid Emails": response.emails_invalid.length
+                    });
                     var invalidEmails = response.emails_invalid;
                     if (invalidEmails.length > 0 ){
                         alert("The following email addresses aren't valid:\n" + invalidEmails.join(","));
                     }
                 },
                 error: function(){
+                    mixpanel.track('Invite Users Failed', {
+                        Reason: "Server Error"
+                    });
                     alert("Woops, There seems to have been some sort of error sending the invites.");
                     location.reload();
                 }
@@ -63,6 +78,7 @@ export default Ember.Controller.extend({
             return true;
         },
         close: function(){
+            mixpanel.track("Invite Users Canceled");
             this.set('selectedClasses', []);
             return true;
         }

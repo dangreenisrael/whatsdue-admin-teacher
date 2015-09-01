@@ -22,6 +22,8 @@ module.exports = function(defaults) {
     app.import('vendor/template-vendors/theme-style.css');
     app.import('vendor/template-vendors/bootstrap-reset.css');
     app.import('vendor/external-vendors/ba-linkify.min.js');
-    app.import('vendor/custom.js');
+
+    app.import('vendor/global-functions.js');
+
     return app.toTree();
 };

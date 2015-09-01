@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 /* global moment */
 /* global mixpanel */
+/* global __insp */
 
 export default Ember.Controller.extend({
     user:{},
@@ -25,36 +26,40 @@ export default Ember.Controller.extend({
                 createdAt = 1429142400;
             }
             controller.set('user', data.user);
+            var fullName = userData.first_name+" "+userData.last_name;
+
             window.Intercom('boot', {
-                app_id:             "kqf71wt5",
-                name:               userData.first_name+" "+userData.last_name,
-                institution_name:   userData.institution_name,
-                user_id:            userData.id,
-                email:              userData.email,
-                created_at:         createdAt,
-                total_courses:      userData.total_courses,
-                total_assignments:  userData.total_assignments,
-                unique_students:    userData.unique_students
+                app_id:                 "kqf71wt5",
+                email:                  userData.email,
+                user_id:                userData.id,
+                name:                   fullName,
+                "Institution Name":     userData.institution_name,
+                "Created At":           createdAt,
+                "Total Courses":        userData.total_courses,
+                "Total Assignments":    userData.total_assignments,
+                "Unique Students":      userData.unique_students
             });
+
             mixpanel.identify(userData.id);
             mixpanel.people.set({
-                "$email":           userData.email,
-                "$created":         userData.signup_date,
-                "$last_login":      new Date(),
-                name:               userData.first_name+" "+userData.last_name,
-                institution_name:   userData.institution_name,
-                user_id:            userData.id,
-                email:              userData.email,
-                created_at:         createdAt,
-                total_courses:      userData.total_courses,
-                total_assignments:  userData.total_assignments,
-                unique_students:    userData.unique_students
+                "$email":               userData.email,
+                "$created":             userData.signup_date,
+                "$last_login":          new Date(),
+                "$name":                fullName,
+                "Institution Name":     userData.institution_name,
+                "User ID":              userData.id,
+                "Email":                userData.email,
+                "Created At":           createdAt,
+                "Total Courses":        userData.total_courses,
+                "Total Assignments":    userData.total_assignments,
+                "Unique Students":      userData.unique_students
             });
+            mixpanel.track("Logged In");
             /*  */
+            __insp.push(['identify',    fullName]);
             __insp.push(['tagSession', {
-                first_name: userData.first_name,
-                last_name: userData.last_name,
-                id: userData.id
+                id: userData.id,
+                school: userData.institution_name
             }]);
 
         });

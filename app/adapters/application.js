@@ -5,7 +5,7 @@
 import DS from "ember-data";
 
 export default DS.RESTAdapter.extend({
-    namespace: '/api/teacher',
+    namespace: '/app_dev.php/api/teacher',
     shouldReloadAll: function() {
         return true;
     },

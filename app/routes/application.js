@@ -1,11 +1,17 @@
 import Ember from 'ember';
-
+/* global __insp */
+/* global mixpanel */
 export default Ember.Route.extend({
     renderTemplate: function() {
         this.render({ outlet: 'main' });
         if(this.store.peekAll('course').filterBy('archived', false).length < 1){
+            mixpanel.track('New Signup');
             this.transitionTo('courses.new');
+
         }
+    },
+    didTransition: function() {
+        __insp.push(["virtualPage"]);
     },
     model: function() {
         this.store.findAll('assignment');
@@ -68,10 +74,24 @@ export default Ember.Route.extend({
             this.goBack();
         },
         save: function(){
+            Ember.$.get("/api/teacher/user", function( data ) {
+                var userData = data.user;
+                window.Intercom('update', {
+                    "Total Courses": userData.total_courses,
+                    "Total Assignments": userData.total_assignments,
+                    "Unique Students": userData.unique_students
+                });
+
+                mixpanel.people.set({
+                    "Total Courses": userData.total_courses,
+                    "Total Assignments": userData.total_assignments,
+                    "Unique Students": userData.unique_students
+                });
+            });
             this.goBack();
         },
-        remove: function(){
-            this.goBack();
+        remove: function() {
+            window.history.back();
         },
         send: function(){
             this.goBack();

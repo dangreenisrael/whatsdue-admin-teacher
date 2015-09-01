@@ -1,9 +1,11 @@
 import Ember from 'ember';
+/* global mixpanel */
 
 export default Ember.Controller.extend({
     actions: {
         save: function() {
             this.get('model').save();
+            mixpanel.track('Course Edited');
             return true;
         },
         remove: function(){
@@ -13,11 +15,12 @@ export default Ember.Controller.extend({
             if (dialogue === true) {
                 model.destroyRecord();
             }
-
+            mixpanel.track('Course Removed');
             window.history.go(-2);
             return true;
         },
         close: function(){
+            mixpanel.track('Course Edit Canceled');
             this.get('model').rollbackAttributes();
             return true;
         }
