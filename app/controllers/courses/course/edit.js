@@ -16,7 +16,7 @@ export default Ember.Controller.extend({
                 model.destroyRecord();
             }
             mixpanel.track('Course Removed');
-            window.history.go(-2);
+            this.transitionToRoute('application');
             return true;
         },
         close: function(){

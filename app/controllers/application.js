@@ -76,7 +76,7 @@ export default Ember.Controller.extend({
 
         var hash = window.location.hash.substr(1);
         if (hash === "" || hash === "/"){
-            this.store.find('course').then(function(records){
+            this.store.findAll('course').then(function(records){
                 var courseId = records.filterBy('archived', false).get('firstObject').get('id');
                 controller.transitionToRoute('courses.course', courseId);
             });

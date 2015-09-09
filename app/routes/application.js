@@ -28,12 +28,7 @@ export default Ember.Route.extend({
         this.transitionTo('courses.course', courseId);
     },
     actions: {
-        didTransition: function(){
-            var router = this;
-            Ember.$('#Modal').on('hide.bs.modal', function () {
-                router.goBack();
-            });
-        },
+
         modal: function(route, param){
             this.checkLogin();
             if (param === undefined){

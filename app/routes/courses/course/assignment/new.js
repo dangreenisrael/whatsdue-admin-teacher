@@ -9,7 +9,7 @@ export default Ember.Route.extend({
     },
     model: function() {
         var course_id = this.paramsFor('courses.course').course_id;
-        return this.store.find('course', course_id);
+        return this.store.findRecord('course', course_id);
     }
 });
 

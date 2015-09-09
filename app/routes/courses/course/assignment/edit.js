@@ -8,7 +8,7 @@ export default Ember.Route.extend({
         });
     },
     model: function(params) {
-        return this.store.find('assignment', params.assignment_id);
+        return this.store.findRecord('assignment', params.assignment_id);
     }
 });
 

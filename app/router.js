@@ -11,7 +11,9 @@ Router.map(function() {
             this.route('edit');
             this.route('info');
             this.route('assignment', function(){
-                this.route('new');
+                this.route('new', function(){
+                    this.route('recurring');
+                });
                 this.route('edit',   {path:':assignment_id/edit'});
                 this.route('status', {path:':assignment_id/status'});
             });
