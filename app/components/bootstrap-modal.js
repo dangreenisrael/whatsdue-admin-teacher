@@ -5,7 +5,11 @@ import Ember from "ember";
 
 export default Ember.Component.extend({
     didInsertElement: function(){
-        Ember.$('#Modal').modal('show');
+        Ember.$('#Modal').modal({
+            show: true,
+            backdrop: 'static',
+            keyboard: false
+        });
         setTimeout(function(){
             Ember.$('input.focus').focus();
         },500);

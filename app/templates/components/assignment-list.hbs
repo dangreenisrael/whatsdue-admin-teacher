@@ -7,10 +7,21 @@
         <th class="category noselect pointer {{name}} {{sort}}" {{action 'sortBy' 'assignment_name' }}>Category</th>
         <th class="description noselect">Description </th>
         <th class="edit noselect">Edit </th>
+        <th class="bulk noselect">
+            {{#if selectionMade}}
+                <button class="btn btn-danger" {{action 'bulkDelete'}}>
+                    Delete
+                </button>
+            {{else}}
+                <button class="btn disabled">
+                    Delete
+                </button>
+            {{/if}}
+        </th>
 
     </tr>
     </thead>
-    <tbody>
+    <tbody class="no-select">
         {{#each sorted.arrangedContent as |assignment|}}
             {{#unless assignment.archived}}
                 <tr>
@@ -34,10 +45,15 @@
                     <td class="fa fa-edit edit" {{action 'click' 'courses.course.assignment.edit' assignment.course_id.id assignment.id}}>
 
                     </td>
-                    <!--<td class="fa fa-edit status" {action 'click' 'courses.course.assignment.status' assignment.course_id.id assignment.id}}>-->
-                        <!--status-->
-                    <!--</td>-->
-
+                    <td class="bulk">
+                        <span{{action 'select' assignment}}>
+                            {{#if assignment.selected}}
+                                <i class="fa fa-check-square-o"></i>
+                            {{else}}
+                                <i class="fa fa-square-o text-muted"></i>
+                            {{/if}}
+                        </span>
+                    </td>
                 </tr>
             {{/unless}}
         {{/each}}

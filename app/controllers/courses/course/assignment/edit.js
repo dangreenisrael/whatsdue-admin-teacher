@@ -17,7 +17,7 @@ export default Ember.Controller.extend({
         remove: function(){
             var model = this.get('model');
             this.transitionToRoute('courses.course', model.get('course_id').get('id'));
-            model.destroyRecord();
+            model.set('archived', true).save();
             mixpanel.track('Assignment Removed');
 
             return true;

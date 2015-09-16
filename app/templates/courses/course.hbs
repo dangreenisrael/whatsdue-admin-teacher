@@ -1,14 +1,14 @@
 
-<li class="col-md-12 panel ui-state-default" id={{model.id}}>
+<li class="col-md-12 panel ui-state-default course-panel">
     <header class="panel-heading row">
         <div class="col-sm-6">
-            {{#link-to 'courses.course.edit' model.id}}
+            {{#link-to 'courses.course.edit' model.id tooltipContent="Edit Course"}}
                 {{model.course_name}}:
             {{/link-to}}
             &emsp;
             {{#if model.totalStudents}}
 
-                {{#link-to 'courses.course.info' model.id tag="span" class="student-count"}}
+                {{#link-to 'courses.course.info' model.id tag="span" class="student-count" tooltipContent="List of Subscribers"}}
                     {{model.totalStudents}} Subscribers
                 {{/link-to}}
             {{else}}
@@ -32,7 +32,7 @@
         </span>
     </header>
     <div class="panel-body">
-        {{assignment-list assignments=model.assignment_list courseId=model.id modal="modal" firstAssignment="firstAssignment"}}
+        {{assignment-list assignments=model.assignment_list courseId=model.id modal="modal" firstAssignment="firstAssignment" selected="checkSelected"}}
     </div>
 </li>
 

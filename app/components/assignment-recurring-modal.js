@@ -83,8 +83,19 @@ export default Ember.Component.extend({
                 description:        this.get('description'),
                 time_visible:       this.get('timepickerEnabled')
             };
-            this.set('saving', true);
-            this.sendAction('save', data, this.getDueDates());
+            var dueDates = this.getDueDates();
+            if(dueDates.length > 15){
+                var confirm = window.confirm("You are about to add "+dueDates.length+" assignments.\n\n" +
+                    "This may cause in app performance issues.\n\n" +
+                    "Press 'OK' to do add them anyway.");
+                if (confirm) {
+                    this.sendAction('save', data, dueDates);
+                    this.set('saving', true);
+                }
+            } else{
+                this.sendAction('save', data, dueDates);
+                this.set('saving', true);
+            }
         },
         close: function() {
             this.sendAction('close');
