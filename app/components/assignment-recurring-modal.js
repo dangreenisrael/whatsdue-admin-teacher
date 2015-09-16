@@ -91,10 +91,23 @@ export default Ember.Component.extend({
                 if (confirm) {
                     this.sendAction('save', data, dueDates);
                     this.set('saving', true);
+                    mixpanel.track('Recurring Assignment Added Post Warning',{
+                            "Assignment Count": dueDates.length
+                        }
+                    );
+                } else{
+                    mixpanel.track('Recurring Assignment Not Added',{
+                            "Assignment Count": dueDates.length
+                        }
+                    );
                 }
             } else{
                 this.sendAction('save', data, dueDates);
                 this.set('saving', true);
+                mixpanel.track('Recurring Assignment Added',{
+                        "Assignment Count": dueDates.length
+                    }
+                );
             }
         },
         close: function() {
