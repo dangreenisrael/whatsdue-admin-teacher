@@ -1,38 +1,38 @@
-<div class="col-sm-3 sidebar">
-    <section class="panel">
-        <header class="panel-heading">
-            My Courses
-            <button class="btn btn-primary" {{action 'modal' 'courses.new' }} id="addCourse">
-                Add Course
-            </button>
-        </header>
-        <div class="panel-body no-select" id="course-list">
-            <ul>
-                {{#each courses as |course|}}
-                    {{#unless course.archived}}
-                        <li>
-                            {{#link-to 'courses.course' course tag="li" class="pointer"}}
-                                {{course.course_name}}
-                            {{/link-to}}
-                        </li>
-                    {{/unless}}
-                {{/each}}
-            </ul>
+<section class="panel course-bar">
+    <header class="panel-heading">
+        My Courses
+        <button class="btn btn-primary" {{action 'modal' 'courses.new' }} id="addCourse">
+            Add Course
+        </button>
+        <a target="_blank" href="http://google.com">Share</a>
+    </header>
+    <div class="panel-body no-select" id="course-list">
+        <ul>
+            {{#each courses as |course|}}
+                {{#unless course.archived}}
+                    <li>
+                        {{#link-to 'courses.course' course tag="li" class="pointer"}}
+                            {{course.course_name}}
+                        {{/link-to}}
+                    </li>
+                {{/unless}}
+            {{/each}}
+        </ul>
 
-            <!--{#sortable-group tagName="ul" onChange="reorderItems" as |group|}}-->
-                <!--{#each courses as |course|}}-->
-                    <!--{#unless course.archived}}-->
-                        <!--{#sortable-item tagName="li" model=course group=group handle=".handle"}}-->
-                            <!--{#link-to 'courses.course' course tag="span" class="pointer"}}-->
-                                <!--{course.course_name}}-->
-                            <!--{/link-to}}-->
-                            <!--<i class="pull-right fa fa-sor handle"></i>-->
-                        <!--{/sortable-item}}-->
-                    <!--{/unless}}-->
-                <!--{/each}}-->
-            <!--{/sortable-group}}-->
-        </div>
-        <div class="panel-footer">
-        </div>
-    </section>
-</div>
+        <!--{#sortable-group tagName="ul" onChange="reorderItems" as |group|}}-->
+            <!--{#each courses as |course|}}-->
+                <!--{#unless course.archived}}-->
+                    <!--{#sortable-item tagName="li" model=course group=group handle=".handle"}}-->
+                        <!--{#link-to 'courses.course' course tag="span" class="pointer"}}-->
+                            <!--{course.course_name}}-->
+                        <!--{/link-to}}-->
+                        <!--<i class="pull-right fa fa-sor handle"></i>-->
+                    <!--{/sortable-item}}-->
+                <!--{/unless}}-->
+            <!--{/each}}-->
+        <!--{/sortable-group}}-->
+    </div>
+    <div class="panel-footer">
+
+    </div>
+</section>

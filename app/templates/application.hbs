@@ -43,9 +43,11 @@
         <!--body wrapper start-->
         <div class="wrapper">
             <div class="row">
-                <div  {{action "toggleMenu"}}>
-                {{course-bar courses=model savedOrder=courseOrder modal="modal"}}
+                <div {{action "toggleMenu"}} class="col-sm-3 sidebar">
+                    {{course-bar courses=model savedOrder=courseOrder modal="modal"}}
+                    {{referral-pane id=user.id}}
                 </div>
+
                 <div class="col-lg-3">
                     <!-- place holder div -->
                 </div>
