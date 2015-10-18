@@ -23,7 +23,7 @@
     </thead>
     <tbody class="no-select">
         {{#each sorted.arrangedContent as |assignment|}}
-            {{#unless assignment.archived}}
+            {{#if assignment.currentAssignment}}
                 <tr>
                     <td  class="date" {{action 'click' 'courses.course.assignment.edit' assignment.course_id.id assignment.id }}>
                         <span class="hidden"> {{assignment.timestamp}} </span>
@@ -55,7 +55,7 @@
                         </span>
                     </td>
                 </tr>
-            {{/unless}}
+            {{/if}}
         {{/each}}
     </tbody>
 </table>

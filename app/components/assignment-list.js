@@ -14,7 +14,6 @@ export default Ember.Component.extend(Ember.SortableMixin,{
             sortAscending: true,
             content : this.get('assignments')
         });
-
     }.property('assignments'),
     actions: {
         sortBy: function(property) {

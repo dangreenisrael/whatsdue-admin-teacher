@@ -12,24 +12,24 @@ export default DS.Model.extend({
         async: true
     }),
     course_id:              DS.belongsTo('course', {async: true}),
+    dueDateMoment: function(){
+        return moment(this.get('due_date'));
+    }.property('due_date'),
     dueDate: function(){
-        return moment(this.get('due_date')).format('ddd MMMM Do');
+        return this.get('dueDateMoment').format('ddd MMMM Do');
     }.property('due_date'),
     due_date_raw: function(){
-        return moment(this.get('due_date')).format('');
+        return this.get('dueDateMoment').format('');
     }.property('due_date'),
     timestamp: function(){
-        return moment(this.get('due_date')).format('X');
+        return this.get('dueDateMoment').format('X');
     }.property('due_date'),
     due_time: function(){
-        return moment(this.get('timestamp'), "X").format('h:mm A');
+        return this.get('dueDateMoment').format('h:mm A');
     }.property('timestamp'),
-    hidden: function(){
-        if (moment().isAfter(this.get('due_date')) === true){
-            return "hidden";
-        }else{
-            return " ";
-        }
-    }.property('due_date')
+    currentAssignment: function(){
+        let startDate = moment().subtract(2, 'days');
+        return this.get('dueDateMoment').isAfter(startDate) && !this.get('archived');
+    }.property()
 });
 

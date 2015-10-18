@@ -3,9 +3,11 @@
         Spread the word
     </header>
     <div class="panel-body">
-        {{social-buttons}}
+        {{social-buttons id=id}}
     </div>
     <div class="panel-footer">
-        <pre>https://admin.whatsdueapp.com/referral/{{id}}</pre>
+        <pre class="has-tooltip"
+             data-tooltip-content="This is your personal referral link. Share this link with other teachers. We'll automatically insert it when you share on Facebook or Twitter. When they sign up for WhatsDue, we’ll know you referred them. Get the most referrals by the end of October and you’ll receive $50 towards your classroom."
+                >http://admin.whatsdueapp.com/referral/{{id}}</pre>
     </div>
 </section>
