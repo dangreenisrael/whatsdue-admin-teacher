@@ -6,8 +6,8 @@
                 {{model.course_name}}:
             {{/link-to}}
             &emsp;
+            {{log model.totalStudents}}
             {{#if model.totalStudents}}
-
                 {{#link-to 'courses.course.info' model.id tag="span" class="student-count" tooltipContent="List of Subscribers"}}
                     {{model.totalStudents}} Subscribers
                 {{/link-to}}

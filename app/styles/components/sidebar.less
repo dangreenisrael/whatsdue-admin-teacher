@@ -12,8 +12,14 @@
     display: inline-block;
   }
   .panel{
+    .panel-footer{
+      border: none;
+      background-color: white;
+    }
+  }
+  .panel.course-bar{
     position: relative;
-    @panel-height: 60vh;
+    @panel-height: 45vh;
     .panel-body {
       position: absolute;
       width: 100%;
@@ -55,5 +61,14 @@
       }
 
     }
+  }
+}
+
+.referral{
+  .panel-body{
+    padding-bottom: 0;
+  }
+  pre{
+    font-size: 12px;
   }
 }

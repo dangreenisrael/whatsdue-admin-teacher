@@ -1,3 +1,4 @@
+Hello
 <section id="main">
 
     <!-- header start -->
@@ -43,9 +44,11 @@
         <!--body wrapper start-->
         <div class="wrapper">
             <div class="row">
-                <div  {{action "toggleMenu"}}>
-                {{course-bar courses=model savedOrder=courseOrder modal="modal"}}
+                <div {{action "toggleMenu"}} class="col-sm-3 sidebar">
+                    {{course-bar courses=model savedOrder=courseOrder modal="modal"}}
+                    {{referral-pane id=user.id}}
                 </div>
+
                 <div class="col-lg-3">
                     <!-- place holder div -->
                 </div>
@@ -60,11 +63,6 @@
     </div>
     <!-- main content end-->
 </section>
-<!--&lt;!&ndash;footer section start&ndash;&gt;-->
-<!--<footer id="mainFooter">-->
-    <!--2014 &copy; WhatsDue-->
-<!--</footer>-->
-<!--&lt;!&ndash;footer section end&ndash;&gt;-->
 
 <div class="modal fade" id="Modal" role="dialog" >
     <div class="modal-dialog">
