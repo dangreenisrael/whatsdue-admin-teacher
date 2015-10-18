@@ -2,9 +2,9 @@
     <thead>
     <tr>
         <!--<th></th>-->
-        <th class="date noselect pointer {{time}} {{sort}}" {{action 'sortBy' 'timestamp'}} >Due Date</th>
+        <th class="date noselect pointer {{timestamp}} {{sortDirection}}" {{action 'sortBy' 'timestamp'}} >Due Date</th>
         <th class="time">Time</th>
-        <th class="category noselect pointer {{name}} {{sort}}" {{action 'sortBy' 'assignment_name' }}>Category</th>
+        <th class="category noselect pointer {{assignment_name}} {{sortDirection}}" {{action 'sortBy' 'assignment_name' }}>Category</th>
         <th class="description noselect">Description </th>
         <th class="edit noselect">Edit </th>
         <th class="bulk noselect">
@@ -22,7 +22,7 @@
     </tr>
     </thead>
     <tbody class="no-select">
-        {{#each sorted.arrangedContent as |assignment|}}
+        {{#each sorted as |assignment|}}
             {{#if assignment.currentAssignment}}
                 <tr>
                     <td  class="date" {{action 'click' 'courses.course.assignment.edit' assignment.course_id.id assignment.id }}>

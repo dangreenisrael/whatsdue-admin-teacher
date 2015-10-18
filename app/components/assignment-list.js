@@ -2,36 +2,29 @@
  * Created by Dan on 6/5/15.
  */
 import Ember from "ember";
-
-export default Ember.Component.extend(Ember.SortableMixin,{
-    sort: "desc",
-    time: "sorting",
-    sortProperties: ['timestamp'],
-    sortAscending: true,
-    sorted : function(){
-        return Ember.ArrayProxy.extend(Ember.SortableMixin).create({
-            sortProperties: ['timestamp'],
-            sortAscending: true,
-            content : this.get('assignments')
-        });
-    }.property('assignments'),
+//Ember.SortableMixin,
+export default Ember.Component.extend({
+    sortDirection: 'asc',
+    sortProperty: 'timestamp',
+    sortBy: function(){
+        let sortProperty = this.get('sortProperty');
+        let sortDirection = this.get('sortDirection');
+        return [sortProperty+":"+sortDirection]
+    }.property('sortDirection', 'sortProperty'),
+    sorted: Ember.computed.sort('assignments', 'sortBy'),
     actions: {
         sortBy: function(property) {
-            this.get("sorted").set("sortProperties",[property]);
-            this.get("sorted").toggleProperty('sortAscending');
-
-            if (property === "assignment_name"){
-                this.set('name', "sorting");
-                this.set('time', "");
-
-            } else{
-                this.set('name',"");
-                this.set('time',"sorting");
-            }
-            if (this.get("sorted").get('sortAscending') === true){
-                this.set('sort', "desc");
-            } else{
-                this.set('sort', "asc");
+            this.set('assignment_name', "");
+            this.set('timestamp', "");
+            this.set(property, "sorting");
+            if (property === this.get('sortProperty')){
+                if (this.get('sortDirection') === 'asc'){
+                    this.set('sortDirection', 'desc');
+                } else{
+                    this.set('sortDirection', 'asc');
+                }
+            } else {
+                this.set('sortProperty', property);
             }
         },
         click: function (route, course, assignment) {
