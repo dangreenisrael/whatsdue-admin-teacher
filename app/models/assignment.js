@@ -1,4 +1,5 @@
 import DS from 'ember-data';
+import Ember from 'ember';
 /* global moment */
 export default DS.Model.extend({
     assignment_name:        DS.attr('string'),
@@ -15,11 +16,14 @@ export default DS.Model.extend({
     dueDateMoment: function(){
         return moment(this.get('due_date'));
     }.property('due_date'),
+    dueDay: Ember.computed('dueDateMoment', function(){
+       return this.get('dueDateMoment').calendar();
+    }),
     dueDate: function(){
         return this.get('dueDateMoment').format('ddd MMMM Do');
     }.property('due_date'),
     due_date_raw: function(){
-        return this.get('dueDateMoment').format('');
+        return this.get('dueDateMoment').toDate();
     }.property('due_date'),
     timestamp: function(){
         return this.get('dueDateMoment').format('X');
@@ -27,9 +31,14 @@ export default DS.Model.extend({
     due_time: function(){
         return this.get('dueDateMoment').format('h:mm A');
     }.property('timestamp'),
-    currentAssignment: function(){
-        let startDate = moment().subtract(2, 'days');
-        return this.get('dueDateMoment').isAfter(startDate) && !this.get('archived');
-    }.property()
+    status: function(){
+        let yesterday = moment().subtract(2, 'days');
+        if (this.get('dueDateMoment').isAfter(yesterday) && !this.get('archived')){
+            return "current";
+        } else if(this.get('archived')){
+            return "deleted";
+        } else{
+            return "past";
+        }
+    }.property('archived')
 });
-

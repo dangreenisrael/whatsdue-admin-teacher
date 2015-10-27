@@ -10,9 +10,6 @@ export default Ember.Route.extend({
             outlet: 'modal',
             into: 'application'
         });
-    },
-    model: function(){
-        return this.store.findAll('course');
     }
 });
 

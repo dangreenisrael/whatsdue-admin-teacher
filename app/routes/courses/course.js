@@ -11,6 +11,14 @@ export default Ember.Route.extend({
     },
     model: function(params) {
         return this.store.findRecord('course', params.course_id);
+    },
+    afterModel: function(course){
+        if ((typeof course === "undefined") || (course.get('archived') === true)){
+            let route = this;
+            this.transitionTo('application').then(function(){
+                route.store.unloadRecord(course);
+            });
+        }
     }
 });
 

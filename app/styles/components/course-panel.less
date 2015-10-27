@@ -1,15 +1,30 @@
 .course-panel{
-  th{
-    vertical-align: middle!important;
+  height: calc(~"100vh" - (@topBarHeight + @wrapperPadding*2) );
+  overflow: hidden;
+  .panel-heading{
+    .right-buttons{
+      padding-right: 20px;
+      float: right;
+    }
   }
-  .bulk{
-    text-align: center;
-  }
-  td.bulk{
-    font-size: 20px;
-  }
-  td.edit{
-    font-size: 20px;
-    margin-top: -1px;
+  .panel-body{
+    height: 100%;
+    overflow: scroll;
+    table{
+      margin-bottom: @wrapperPadding*2;
+      th{
+        vertical-align: middle!important;
+      }
+      .bulk{
+        text-align: center;
+      }
+      td.bulk{
+        font-size: 20px;
+      }
+      td.edit{
+        font-size: 20px;
+        margin-top: -1px;
+      }
+    }
   }
 }

@@ -12,7 +12,6 @@ export default Ember.Controller.extend({
                 mixpanel.track('Course Added Failed',{
                     Reason: "No name given"
                 });
-
                 alert("You need to enter a course name");
                 return false;
             } else{
@@ -21,7 +20,7 @@ export default Ember.Controller.extend({
                     course_name: this.get('course_name'),
                     instructor_name: userName
                 }).save().then(function(course){
-                    controller.transitionToRoute('courses.course', course.get('id'));
+                    controller.transitionToRoute('courses.course.assignment.new', course.get('id'));
                 });
                 this.set('course_name', "");
                 mixpanel.track('Course Added');

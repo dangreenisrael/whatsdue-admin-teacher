@@ -6,7 +6,10 @@ import Ember from "ember";
 export default Ember.Component.extend({
     didInsertElement: function(){
         Ember.$('#timepicker').timepicker(
-            {'showInputs': false}
+            {
+                showInputs: false,
+                disableFocus: true
+            }
         );
     }
 });

@@ -1,10 +1,7 @@
 @import "../variables";
 
+@referralHeight: 180px;
 .sidebar{
-  position: fixed;
-  left: 40px;
-  overflow: visible;
-  top:90px;
   a{
     color: @dark-blue;
     width: 100%;
@@ -19,12 +16,11 @@
   }
   .panel.course-bar{
     position: relative;
-    @panel-height: 45vh;
+    height: calc(~"100vh" - (@topBarHeight + @wrapperPadding*2 + @referralHeight + 20) );
+    overflow: scroll;
     .panel-body {
-      position: absolute;
       width: 100%;
-      height: @panel-height;
-      overflow: auto;
+      overflow: scroll;
       padding-top: 0;
     }
     .panel-heading{
@@ -33,9 +29,6 @@
         margin-top: -5px;
         line-height: 16px;
       }
-    }
-    .panel-footer{
-      margin-top: @panel-height;
     }
 
     ul {
@@ -65,6 +58,7 @@
 }
 
 .referral{
+  height: @referralHeight;
   .panel-body{
     padding-bottom: 0;
   }

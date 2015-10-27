@@ -1,0 +1,18 @@
+<div class="form-group row assignment-editor">
+    <div class="col-sm-6">
+        <div class="row form-group ">
+            {{bootstrap-datepicker-inline value=dueDateRaw daysOfWeekDisabled="" startDate=tomorrow }}
+        </div>
+        <div class="row">
+            {{time-picker timepickerEnabled=timepickerEnabled display_time=display_time}}
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="row">
+            <div class="col-sm-12">
+                {{type-dropdown selection=assignment_name}}
+                {{textarea id="assignmentDescription" value=description class="form-control" placeholder="Type details here" }}
+            </div>
+        </div>
+    </div>
+</div>

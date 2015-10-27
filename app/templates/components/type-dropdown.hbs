@@ -1,15 +1,25 @@
 <!-- Be sure to add the rl-dropdown-toggle class to your dropdown toggle element -->
-{{input
-    type="text" id="assignmentCategory"
-    value=selection maxlength="12"
-    class="rl-dropdown-toggle pull-left form-control"
-    placeholder="Category" enter='select'
-}}
+
+
+{{#if custom}}
+    {{input
+        type="text"
+        value=selection maxlength="12"
+        class="rl-dropdown-toggle pull-left form-control assignmentCategory"
+        placeholder="Custom"
+        enter='select'
+    }}
+{{else}}
+    <button {{action "toggleDropdown"}} class="rl-dropdown-toggle pull-left form-control assignmentCategory">
+        {{selection}}
+    </button>
+{{/if}}
+
 
 <i class="rl-dropdown-toggle fa fa-sort-down dropdown-toggle" {{action "toggleDropdown"}}></i>
 {{#if dropdownExpanded}}
     <!-- Be sure to add the rl-dropdown class to your dropdown element -->
-    <div class="rl-dropdown">
+    <div class="rl-dropdown no-select">
         <ul class="dropdown-menu">
             {{#each options as |item|}}
                 <li {{action 'select' item}}>

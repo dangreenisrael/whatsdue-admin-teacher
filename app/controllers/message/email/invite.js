@@ -11,7 +11,7 @@ export default Ember.Controller.extend({
 
     }.on('init'),
     classes: function(){
-        return this.get('model').filterBy('archived', false);
+        return this.store.peekAll('course');
     }.property(),
     selectedClasses: function(){
         return [];
@@ -21,6 +21,7 @@ export default Ember.Controller.extend({
         send: function() {
             var email_list = this.get('emailAddresses'),
                 courseObjects = this.get('selectedClasses'),
+                message = this.get('message'),
                 courses = [];
 
             if (courseObjects.length < 1){
@@ -42,7 +43,7 @@ export default Ember.Controller.extend({
             var payload =
             {
                 email: {
-                    message:    "",
+                    message:    message,
                     courses:    courses,
                     email_list: email_list
                 }

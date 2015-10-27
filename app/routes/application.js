@@ -23,10 +23,6 @@ export default Ember.Route.extend({
                 window.location = "/login";
             });
     },
-    goBack: function(){
-        var courseId = this.controllerFor('application').get('courseId');
-        this.transitionTo('courses.course', courseId);
-    },
     actions: {
 
         modal: function(route, param){
@@ -66,7 +62,7 @@ export default Ember.Route.extend({
             }
         },
         close: function(){
-            this.goBack();
+            this.transitionTo('courses.course');
         },
         save: function(){
             Ember.$.get("/api/teacher/user", function( data ) {
@@ -83,13 +79,13 @@ export default Ember.Route.extend({
                     "Unique Students": userData.unique_students
                 });
             });
-            this.goBack();
+            this.transitionTo('courses.course');
         },
         remove: function() {
-            window.history.back();
+            this.transitionTo('courses.course');
         },
         send: function(){
-            this.goBack();
+            this.transitionTo('courses.course');
         }
     }
 });

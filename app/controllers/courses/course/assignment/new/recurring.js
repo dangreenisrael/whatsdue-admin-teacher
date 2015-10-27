@@ -14,7 +14,7 @@ export default Ember.Controller.extend({
                    "description": assignmentData.description,
                    "due_date": dueDate,
                    "time_visible": assignmentData.time_visible
-               })
+               });
             });
             var data ={
                 course:{
@@ -26,7 +26,7 @@ export default Ember.Controller.extend({
                 controller.get('store').findAll('assignment');
                 controller.transitionToRoute('courses.course',courseId);
             };
-            $.ajax({
+            Ember.$.ajax({
                 type: "POST",
                 url: '/api/teacher/assignments/bulks',
                 data: JSON.stringify(data),

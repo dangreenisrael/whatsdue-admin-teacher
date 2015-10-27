@@ -9,9 +9,30 @@ export default Ember.Component.extend({
     sortBy: function(){
         let sortProperty = this.get('sortProperty');
         let sortDirection = this.get('sortDirection');
-        return [sortProperty+":"+sortDirection]
+        return [sortProperty+":"+sortDirection];
     }.property('sortDirection', 'sortProperty'),
-    sorted: Ember.computed.sort('assignments', 'sortBy'),
+    assignmentsSorted: Ember.computed.sort(
+        'assignmentsFiltered', 'sortBy'),
+    assignmentsFiltered: Ember.computed('assignments.@each.status','selectionMade', 'type', function(){
+        return this.get('assignments').filterBy('status', this.get('type'));
+    }),
+    bulkButton: Ember.computed('type', function(){
+       if (this.get('type') === "deleted"){
+           return "Un-delete";
+       } else{
+           return "Delete";
+       }
+    }),
+    bulkButtonBackground: Ember.computed('type', function(){
+        if (this.get('type') === "deleted"){
+            return "btn-success";
+        } else{
+            return "btn-danger";
+        }
+    }),
+    didInsertElement: function() {
+        this.renderChildTooltips(); // Voila!
+    },
     actions: {
         sortBy: function(property) {
             this.set('assignment_name', "");
@@ -36,12 +57,20 @@ export default Ember.Component.extend({
             this.set('selected', selected);
             this.set('selectionMade', (selected.length > 0));
         },
-        bulkDelete: function(){
-            this.get('selected').forEach(function(assignment){
-                assignment.set('archived', true);
-                assignment.set('selected', false);
-                assignment.save();
-            });
+        bulkAction: function(){
+            if (this.get('type') === "deleted"){
+                this.get('selected').forEach(function(assignment) {
+                    assignment.set('archived', false);
+                    assignment.set('selected', false);
+                    assignment.save();
+                });
+            } else {
+                this.get('selected').forEach(function(assignment){
+                    assignment.set('archived', true);
+                    assignment.set('selected', false);
+                    assignment.save();
+                });
+            }
             this.set('selectionMade', false);
         }
     }

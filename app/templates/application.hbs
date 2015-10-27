@@ -1,10 +1,9 @@
-Hello
 <section id="main">
 
     <!-- header start -->
     <div class="header-section">
         <div class="pull-left">
-            <img id="logo" src="/ember/images/whatsdue-logo.png"/>
+            <img id="logo" src="/teachers/assets/img/whatsdue-logo.png"/>
             <img {{action "toggleMenu"}} id="menu-toggle" src="/teachers/assets/img/menu.png"/>
             <span>
                 WhatsDue Teacher Dashboard for {{user.first_name}} {{user.last_name}}
@@ -49,13 +48,8 @@ Hello
                     {{referral-pane id=user.id}}
                 </div>
 
-                <div class="col-lg-3">
-                    <!-- place holder div -->
-                </div>
                 <div class="col-lg-9">
-                    <ul class="courses">
-                        {{outlet 'main'}}
-                    </ul>
+                    {{outlet 'main'}}
                 </div>
             </div>
         </div>
@@ -64,14 +58,8 @@ Hello
     <!-- main content end-->
 </section>
 
-<div class="modal fade" id="Modal" role="dialog" >
-    <div class="modal-dialog">
-        <div class="modal-content">
-            {{outlet "modal"}}
-        </div>
-    </div>
-</div>
 
+{{outlet "modal"}}
 
 <!-- Tooltip walk through -->
 {{outlet "tooltips"}}

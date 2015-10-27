@@ -1,5 +1,5 @@
 
-<li class="col-md-12 panel ui-state-default course-panel">
+<div class="panel ui-state-default course-panel">
     <header class="panel-heading row">
         <div class="col-sm-6">
             {{#link-to 'courses.course.edit' model.id tooltipContent="Edit Course"}}
@@ -22,7 +22,7 @@
                 {{model.course_code}}
             {{/link-to}}
         </div>
-        <span class="pull-right">
+        <span class="right-buttons">
             {{#link-to 'courses.course.assignment.new' model.id id="add-assignment" class="btn btn-primary"}}
                 Add Assignment
             {{/link-to}} &emsp;
@@ -32,7 +32,19 @@
         </span>
     </header>
     <div class="panel-body">
-        {{assignment-list assignments=model.assignment_list courseId=model.id modal="modal" firstAssignment="firstAssignment" selected="checkSelected"}}
+        <div class="btn-group" role="group" aria-label="Default button group">
+            {{#link-to 'courses.course' (query-params type="current") class="btn btn-default"}}Upcoming{{/link-to}}
+            {{#link-to 'courses.course' (query-params type="past") class="btn btn-default"}}Past{{/link-to}}
+            {{#link-to 'courses.course' (query-params type="deleted")   class="btn btn-default"}}Deleted{{/link-to}}
+        </div>
+        {{log type}}
+        {{assignment-list
+            assignments=model.assignment_list
+            courseId=model.id modal="modal"
+            firstAssignment="firstAssignment"
+            selected="checkSelected"
+            type=type
+        }}
     </div>
-</li>
+</div>
 

@@ -7,13 +7,17 @@ import DropdownComponentMixin from 'ember-rl-dropdown/mixins/rl-dropdown-compone
 export default Ember.Component.extend(DropdownComponentMixin, {
     currentOption: "Homework",
     options: ["Homework", "Project", "Test", "Quiz"],
+    custom: false,
     actions:{
         select: function(value){
             this.set('currentOption', value);
             this.set('selection', value);
             this.set('dropdownExpanded', false);
             if (value===""){
-                Ember.$('#assignmentCategory').focus();
+                this.set('custom', true);
+                Ember.run.later(function(){
+                    Ember.$('.assignmentCategory').focus();
+                }, 100);
             } else{
                 Ember.$('#assignmentDescription').focus();
             }

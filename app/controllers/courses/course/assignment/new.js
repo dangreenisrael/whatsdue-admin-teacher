@@ -1,25 +1,35 @@
 import Ember from 'ember';
-/* global mixpanel */
+/* global mixpanel, moment */
 
 export default Ember.Controller.extend({
+    assignmentName: "Homework",
+    dueDateMoment: Ember.computed(function(){
+        return moment().add(1, 'days').set('hour', 9).set('minute', 0);
+    }),
+    dueTime: "9:00 AM",
+    timeSet: false,
     actions: {
-        save: function(assignment) {
-            var data = this.get('model');
+        save: function() {
+            var course = this.get('model');
             var controller = this;
-            if (assignment.assignment_name !== "") {
+            let name = this.get('assignmentName');
+            let description = this.get('description');
+            let dueDate = this.get('dueDateMoment').format("YYYY-MM-DD HH:mm");
+            let timeVisible = this.get('timeSet');
+            if (name !== "") {
                 this.store.createRecord('assignment', {
-                    course_id:          data,
-                    due_date:           assignment.due_date,
-                    assignment_name:    assignment.assignment_name,
-                    description:        assignment.description,
-                    time_visible:       assignment.time_visible
+                    course_id:          course,
+                    due_date:           dueDate,
+                    assignment_name:    name,
+                    description:        description,
+                    time_visible:       timeVisible
                 }).save().then( function(assignment){
                     controller.transitionToRoute('courses.course', assignment.get('course_id').get('id'));
                 });
 
-                var descriptionLength = function () {
-                    var descriptionWords = assignment.description.split(' ').length;
-                    if (assignment.description.length < 1){
+                let descriptionLength = function () {
+                    var descriptionWords = description.split(' ').length;
+                    if (description.length < 1){
                         return "None";
                     } else if (descriptionWords < 10){
                         return "Under 10";
@@ -28,14 +38,14 @@ export default Ember.Controller.extend({
                     } else if (descriptionWords < 50){
                         return "30 to 50";
                     } else{
-                        return "Over 50"
+                        return "Over 50";
                     }
                 };
 
                 mixpanel.track('Assignment Added',{
                         "Description Length": descriptionLength(),
-                        "Description Has Link": assignment.description.containsLink(),
-                        "Assignment Has Time": assignment.time_visible
+                        "Description Has Link": description.containsLink(),
+                        "Assignment Has Time": timeVisible
                     }
                 );
                 return true;

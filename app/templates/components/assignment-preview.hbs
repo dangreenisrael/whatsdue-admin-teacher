@@ -1,0 +1,78 @@
+<div id="in-app-demo">
+    <img id="phone-shell" src="/teachers/assets/app-demo/iphone.png">
+    <div id="phone-background"></div>
+    <div id="phone-contents">
+        <header id="appHeader">
+            <span class="pull-left">
+                <img src="/teachers/assets/app-demo/menu.png">
+            </span>
+            <span class="pull-right">
+                <img src="/teachers/assets/app-demo/menu.png">
+            </span>
+            <h1 id="page-title">
+                Assignments
+            </h1>
+        </header>
+        <div id="content" class="menuClosed">
+            <div id="main" class="">
+                <div class="content">
+                    <div id="newAssignments">
+                        <nav>
+                            <div class="due" data-ember-action="553">
+                                What's Due
+                        <span class="badge square black">
+                            1
+                        </span>
+                            </div>
+                            <div class="vertical-separator white"></div>
+                            <div class="overdue" data-ember-action="555">
+                                Overdue
+                    <span class="badge square black">
+                        0
+                    </span>
+                            </div>
+                        </nav>
+                        <div>
+                            <div id="assignments-due" class="">
+                                <div class="arrow-up"></div>
+                                <div class="day-divider">{{dueDay}}</div>
+                                <div>
+                                    <div>
+                                        <div class="slider left-box " >
+                                            <div class="fastAnimate {{cardColour}}" >
+                                                <div class="time">
+                                                    <span class="time-due">
+                                                        {{#if timeVisible}}
+                                                            {{dueTime}}
+                                                        {{else}}
+                                                            Morning
+                                                        {{/if}}
+                                                    </span>
+                                                    <div class="course">
+                                                        {{course}}
+                                                    </div>
+                                                </div>
+                                                <div class="info">
+                                                    <div class="title">
+                                                        {{#if category}}
+                                                            {{category}}
+                                                        {{else}}
+                                                            Title
+                                                        {{/if}}
+                                                    </div>
+                                                    <div class="description">
+                                                        {{description-text description}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

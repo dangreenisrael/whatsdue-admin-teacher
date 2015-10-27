@@ -1,4 +1,4 @@
-<table class="table table-hover">
+<table class="table table-hover assignment-list">
     <thead>
     <tr>
         <!--<th></th>-->
@@ -9,12 +9,12 @@
         <th class="edit noselect">Edit </th>
         <th class="bulk noselect">
             {{#if selectionMade}}
-                <button class="btn btn-danger" {{action 'bulkDelete'}}>
-                    Delete
+                <button class="btn {{bulkButtonBackground}}" {{action 'bulkAction'}}>
+                    {{bulkButton}}
                 </button>
             {{else}}
                 <button class="btn disabled">
-                    Delete
+                    {{bulkButton}}
                 </button>
             {{/if}}
         </th>
@@ -22,40 +22,36 @@
     </tr>
     </thead>
     <tbody class="no-select">
-        {{#each sorted as |assignment|}}
-            {{#if assignment.currentAssignment}}
-                <tr>
-                    <td  class="date" {{action 'click' 'courses.course.assignment.edit' assignment.course_id.id assignment.id }}>
-                        <span class="hidden"> {{assignment.timestamp}} </span>
-                        {{assignment.dueDate}}
-                    </td>
-                    <td class="time" {{action 'click' 'courses.course.assignment.edit' assignment.course_id.id assignment.id }}>
-                        {{#if assignment.time_visible}}
-                            {{assignment.due_time}}
+        {{#each assignmentsSorted as |assignment|}}
+            <tr>
+                <td {{action 'click' 'courses.course.assignment.edit' assignment.course_id.id assignment.id }}>
+                    {{assignment.dueDate}}
+                </td>
+                <td {{action 'click' 'courses.course.assignment.edit' assignment.course_id.id assignment.id }}>
+                    {{#if assignment.time_visible}}
+                        {{assignment.due_time}}
+                    {{else}}
+                        -------------
+                    {{/if}}
+                </td>
+                <td {{action 'click' 'courses.course.assignment.edit' assignment.course_id.id assignment.id}}>
+                    {{assignment.assignment_name}}
+                </td>
+                <td {{action 'click' 'courses.course.assignment.edit' assignment.course_id.id assignment.id}}>
+                    {{description-text assignment.description}}
+                </td>
+                <td class="fa fa-edit" {{action 'click' 'courses.course.assignment.preview' assignment.course_id.id assignment.id}}>
+                </td>
+                <td class="bulk">
+                    <span{{action 'select' assignment}}>
+                        {{#if assignment.selected}}
+                            <i class="fa fa-check-square-o"></i>
                         {{else}}
-                            -------------
+                            <i class="fa fa-square-o text-muted"></i>
                         {{/if}}
-                    </td>
-                    <td class="category" {{action 'click' 'courses.course.assignment.edit' assignment.course_id.id assignment.id}}>
-                        {{assignment.assignment_name}}
-                    </td>
-                    <td class="description" {{action 'click' 'courses.course.assignment.edit' assignment.course_id.id assignment.id}}>
-                        {{description-text assignment.description}}
-                    </td>
-                    <td class="fa fa-edit edit" {{action 'click' 'courses.course.assignment.edit' assignment.course_id.id assignment.id}}>
-
-                    </td>
-                    <td class="bulk">
-                        <span{{action 'select' assignment}}>
-                            {{#if assignment.selected}}
-                                <i class="fa fa-check-square-o"></i>
-                            {{else}}
-                                <i class="fa fa-square-o text-muted"></i>
-                            {{/if}}
-                        </span>
-                    </td>
-                </tr>
-            {{/if}}
+                    </span>
+                </td>
+            </tr>
         {{/each}}
     </tbody>
 </table>
