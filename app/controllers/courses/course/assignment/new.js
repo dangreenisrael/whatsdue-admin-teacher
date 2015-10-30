@@ -1,8 +1,9 @@
 import Ember from 'ember';
-/* global mixpanel, moment */
+/* global moment */
 
 export default Ember.Controller.extend({
     assignmentName: "Homework",
+    description: "",
     dueDateMoment: Ember.computed(function(){
         return moment().add(1, 'days').set('hour', 9).set('minute', 0);
     }),
@@ -42,7 +43,7 @@ export default Ember.Controller.extend({
                     }
                 };
 
-                mixpanel.track('Assignment Added',{
+                controller.mixpanel.trackEvent('Assignment Added',{
                         "Description Length": descriptionLength(),
                         "Description Has Link": description.containsLink(),
                         "Assignment Has Time": timeVisible
@@ -50,14 +51,14 @@ export default Ember.Controller.extend({
                 );
                 return true;
             } else{
-                mixpanel.track('Assignment Added Failed', {
+                this.mixpanel.trackEvent('Assignment Added Failed', {
                         Reason: "Type not selected"
                     });
                 alert ('Please select activity type');
             }
         },
         close: function(){
-            mixpanel.track('Add Assignment Canceled');
+            this.mixpanel.trackEvent('Add Assignment Canceled');
             return true;
         }
     }

@@ -85,14 +85,7 @@ textarea {
   resize: none;
 }
 
-.sticky-header .header-section{
-  left: 0;
-  height: @topBarHeight;
-}
 
-.sticky-header .menu-right {
-  margin-right: 0;
-}
 
 
 .main-content{
@@ -258,13 +251,14 @@ ul li{
 
 
 .header-section{
+  left: 0!important;
+  height: @topBarHeight;
+  width: 100vw;
+  position: relative!important;
   #menu-toggle{
     display: none;
   }
-  .notification-menu .dropdown-toggle.active{
-    background-color: white;
-    color: @dark-blue;
-  }
+
   .add-course{
     margin: 15px;
     @media (min-width: 767px) {
@@ -279,21 +273,27 @@ ul li{
     }
   }
   .notification-menu {
-    .dropdown-menu-usermenu, .open .dropdown-toggle{
-      background: @whatsdueBlue;
-      color: white;
-      font-size: 16px;
-    }
-    .dropdown-menu {
-      &:after{
-        border-bottom: white;
+    margin-right: 0;
+    #user-dropdown:hover{
+      .dropdown-toggle{
+        background-color: @whatsdueBlue;
+        color: white;
       }
-      li a{
-        font-size: 15px;
+      .dropdown-menu {
+        display: block;
+        background: @whatsdueBlue;
+        color: white;
+        font-size: 16px;
+
+        &:after{
+          border-bottom: white;
+        }
+        li a{
+          font-size: 15px;
+        }
       }
     }
   }
-
 }
 
 .subscriber-role{

@@ -30,9 +30,7 @@
         </div>
     </div>
     <div class="modal-footer">
-        <button class="btn btn-primary" type="button" {{action 'save'}} >Save</button>
-        {{#if edit}}
-            <button  class="btn btn-danger pull-left" type="button" {{action 'remove'}} >Delete</button>
-        {{/if}}
+        <button class="save btn btn-primary" type="button" {{action 'save'}} >Save</button>
+        <button  class="delete btn btn-danger pull-left" type="button" {{action 'remove'}} >Delete</button>
     </div>
 {{/bootstrap-modal}}

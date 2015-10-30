@@ -1,39 +1,8 @@
 <section id="main">
 
     <!-- header start -->
-    <div class="header-section">
-        <div class="pull-left">
-            <img id="logo" src="/teachers/assets/img/whatsdue-logo.png"/>
-            <img {{action "toggleMenu"}} id="menu-toggle" src="/teachers/assets/img/menu.png"/>
-            <span>
-                WhatsDue Teacher Dashboard for {{user.first_name}} {{user.last_name}}
-            </span>
-        </div>
-        <div class="menu-right ">
-            <ul class="notification-menu">
-                <li id="invite-users">
-                    {{#link-to 'message.email.invite' class="btn btn-default dropdown-toggle"}}
-                        Invite Subscribers <i class="fa fa-users"></i>
-                    {{/link-to}}
-                </li>
-                <li>
-                    <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                        <i class="fa fa-info-circle"></i>
-                        {{user.first_name}}
-                        <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
-                        <li><a href="mailto:aaron@whatsdueapp.com"><i class="fa fa-envelope"></i>Email Aaron</a></li>
-                        <li><a href="skype:aarontaylor613?call"><i class="fa fa-phone"></i>Skype Aaron</a></li>
-                        <li><a href="/logout"><i class="fa fa-sign-out"></i> Log Out</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </div>
+    {{menu-bar user=user toggleMenu="toggleMenu"}}
     <!-- header end -->
-
-
 
     <!-- main content start-->
     <div class="main-content {{mobileMenu}}" {{action "hideMenu"}}>
@@ -63,3 +32,4 @@
 
 <!-- Tooltip walk through -->
 {{outlet "tooltips"}}
+

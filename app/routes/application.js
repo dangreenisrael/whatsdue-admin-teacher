@@ -1,11 +1,10 @@
 import Ember from 'ember';
 /* global __insp */
-/* global mixpanel */
 export default Ember.Route.extend({
     renderTemplate: function() {
         this.render({ outlet: 'main' });
         if(this.store.peekAll('course').filterBy('archived', false).length < 1){
-            mixpanel.track('New Signup');
+            this.mixpanel.track('New Signup');
             this.transitionTo('courses.new');
 
         }
@@ -24,7 +23,6 @@ export default Ember.Route.extend({
             });
     },
     actions: {
-
         modal: function(route, param){
             this.checkLogin();
             if (param === undefined){
@@ -50,7 +48,6 @@ export default Ember.Route.extend({
                 into: 'application',
                 outlet: 'modal'
             });
-            Ember.$('#Modal').modal('show');
         },
         toggleMenu: function() {
             this.controller.toggleProperty('mobileMenuToggle');
@@ -65,6 +62,7 @@ export default Ember.Route.extend({
             this.transitionTo('courses.course');
         },
         save: function(){
+            let route = this;
             Ember.$.get("/api/teacher/user", function( data ) {
                 var userData = data.user;
                 window.Intercom('update', {
@@ -73,7 +71,7 @@ export default Ember.Route.extend({
                     "Unique Students": userData.unique_students
                 });
 
-                mixpanel.people.set({
+                route.mixpanel.peopleSet({
                     "Total Courses": userData.total_courses,
                     "Total Assignments": userData.total_assignments,
                     "Unique Students": userData.unique_students

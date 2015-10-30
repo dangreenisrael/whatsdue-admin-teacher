@@ -1,7 +1,7 @@
 import Ember from 'ember';
+import ENV from 'whatsdue-admin-teacher/config/environment';
 
 /* global moment */
-/* global mixpanel */
 /* global __insp */
 
 export default Ember.Controller.extend({
@@ -40,8 +40,8 @@ export default Ember.Controller.extend({
                 "Unique Students":      userData.unique_students
             });
 
-            mixpanel.identify(userData.id);
-            mixpanel.people.set({
+            controller.mixpanel.identify(userData.id);
+            controller.mixpanel.peopleSet({
                 "$email":               userData.email,
                 "$created":             userData.signup_date,
                 "$last_login":          new Date(),
@@ -54,13 +54,20 @@ export default Ember.Controller.extend({
                 "Total Assignments":    userData.total_assignments,
                 "Unique Students":      userData.unique_students
             });
-            mixpanel.track("Logged In");
-            /*  */
-            __insp.push(['identify',    fullName]);
-            __insp.push(['tagSession', {
-                id: userData.id,
-                school: userData.institution_name
-            }]);
+            controller.mixpanel.trackEvent("Logged In");
+
+            /* Begin Inspectlet */
+            if (ENV.environment === 'production'){
+                __insp.push(['wid', 2075519626]);
+                (function() {function __ldinsp(){var insp = document.createElement('script');insp.type = 'text/javascript';insp.async = true; insp.id = "inspsync";insp.src = ('https:' === document.location.protocol ? 'https' : 'http') + '://cdn.inspectlet.com/inspectlet.js';var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(insp, x);}if (window.attachEvent) {window.attachEvent('onload', __ldinsp);} else {window.addEventListener('load', __ldinsp, false);}})();
+                __insp.push(['identify',    fullName]);
+                __insp.push(['tagSession', {
+                    id: userData.id,
+                    school: userData.institution_name
+                }]);
+            }
+            /* End Inspectlet */
+
 
         });
         moment.locale('en', {

@@ -23,8 +23,15 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
+    },
+    mixpanel: {
+      enabled: false,
+      LOG_EVENT_TRACKING: false,
+      token: 'd2678f7dc9eb34a65ba2cd7b56cc7623',
+      disable_auto_tracking: true // default: false
     }
   };
+
 
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
@@ -36,14 +43,14 @@ module.exports = function(environment) {
 
   if (environment === 'test') {
     // Testem prefers this...
-    ENV.baseURL = '/';
+    ENV.baseURL = '/secure/';
     ENV.locationType = 'none';
 
     // keep test console output quieter
     ENV.APP.LOG_ACTIVE_GENERATION = false;
     ENV.APP.LOG_VIEW_LOOKUPS = false;
 
-    ENV.APP.rootElement = '#ember-testing';
+    ENV.APP.rootElement = 'body';
   }
 
   if (environment === 'production') {

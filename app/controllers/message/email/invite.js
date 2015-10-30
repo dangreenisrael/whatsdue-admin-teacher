@@ -25,13 +25,13 @@ export default Ember.Controller.extend({
                 courses = [];
 
             if (courseObjects.length < 1){
-                mixpanel.track('Invite Users Failed', {
+                this.mixpanel.trackEvent('Invite Users Failed', {
                     Reason: "No course chosen"
                 });
                 alert("You must choose at least one course");
                 return false;
             } else if(!email_list){
-                mixpanel.track('Invite Users Failed', {
+                this.mixpanel.trackEvent('Invite Users Failed', {
                     Reason: "No emails given"
                 });
                 alert("You must enter at least one email address");
@@ -48,6 +48,7 @@ export default Ember.Controller.extend({
                     email_list: email_list
                 }
             };
+            let controller = this;
             Ember.$.ajax({
                 type: "POST",
                 url: "/api/teacher/emails/invites",
@@ -58,7 +59,7 @@ export default Ember.Controller.extend({
                     /*
                      * Display bad emails
                      */
-                    mixpanel.track('Invited Users',{
+                    controller.mixpanel.track('Invited Users',{
                         "Total Courses":  courseObjects.length,
                         "Total Valid Emails": response.emails_valid.length,
                         "Total Invalid Emails": response.emails_invalid.length
@@ -79,7 +80,7 @@ export default Ember.Controller.extend({
             return true;
         },
         close: function(){
-            mixpanel.track("Invite Users Canceled");
+            this.mixpanel.trackEvent("Invite Users Canceled");
             this.set('selectedClasses', []);
             return true;
         }

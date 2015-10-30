@@ -2,7 +2,7 @@
  * Created by Dan on 6/5/15.
  */
 import Ember from "ember";
-/* global moment, mixpanel */
+/* global moment */
 
 export default Ember.Component.extend({
     sunday:     false,
@@ -91,12 +91,12 @@ export default Ember.Component.extend({
                 if (confirm) {
                     this.sendAction('save', data, dueDates);
                     this.set('saving', true);
-                    mixpanel.track('Recurring Assignment Added Post Warning',{
+                    this.mixpanel.trackEvent('Recurring Assignment Added Post Warning',{
                             "Assignment Count": dueDates.length
                         }
                     );
                 } else{
-                    mixpanel.track('Recurring Assignment Not Added',{
+                    this.mixpanel.trackEvent('Recurring Assignment Not Added',{
                             "Assignment Count": dueDates.length
                         }
                     );
@@ -104,7 +104,7 @@ export default Ember.Component.extend({
             } else{
                 this.sendAction('save', data, dueDates);
                 this.set('saving', true);
-                mixpanel.track('Recurring Assignment Added',{
+                this.mixpanel.trackEvent('Recurring Assignment Added',{
                         "Assignment Count": dueDates.length
                     }
                 );

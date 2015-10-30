@@ -23,7 +23,7 @@
     </thead>
     <tbody class="no-select">
         {{#each assignmentsSorted as |assignment|}}
-            <tr>
+            <tr id="{{assignment.id}}">
                 <td {{action 'click' 'courses.course.assignment.edit' assignment.course_id.id assignment.id }}>
                     {{assignment.dueDate}}
                 </td>
