@@ -4,7 +4,7 @@
     height: 380px;
     overflow: hidden
   }
-  :not(.modal-body, .modal-footer){
+  &:not(.modal-dialog){
     input, button{
       border: 1px solid #ccc;
       width: 100%;
@@ -23,23 +23,7 @@
     border-radius: 5px 5px 0 0;
     border-bottom: none;
   }
-  .dropdown-menu{
-    top: 35px;
-    display: block;
-    left: auto;
-  }
-  .dropdown-toggle{
-    position: absolute;
-    right: 10px;
-    cursor: pointer;
-    display: block;
-    padding: 0 15px;
-    font-size: 30px;
-    line-height: 25px;
-  }
-  .rl-dropdown{
-    position: relative;
-  }
+
   .bootstrap-timepicker-widget.dropdown-menu:before, .bootstrap-timepicker-widget.dropdown-menu:after {
     display: none !important;
   }

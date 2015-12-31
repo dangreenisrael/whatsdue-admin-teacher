@@ -1,0 +1,66 @@
+{{#bootstrap-modal type="assignment-status"}}
+    <div class="modal-header">
+        <button type="button" {{action 'close'}} class="close">×</button>
+        <h4 class="modal-title">
+            Stats for {{assignment.assignment_name}}
+            {{#if assignment.time_visible}}
+                due {{format-date assignment.dueDateMoment "ddd MMM Do, h:mm A"}}
+            {{/if}}
+        </h4>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <div class="col-md-12">
+                <table class="table table-hover">
+                    <thead>
+                    <tr class="{{sortDirection}} {{displayProperty}}">
+                        <th {{action 'sortBy' 'first_name'}} class="first_name noselect pointer">
+                            First Name
+                        </th>
+                        <th {{action 'sortBy' 'last_name'}}  class="last_name noselect pointer">
+                            Last Name
+                        </th>
+                        <th {{action 'sortBy' 'role'}}  class="role noselect pointer">
+                            Role
+                        </th>
+                        <th {{action 'sortBy' 'completed'}}  class="completed noselect pointer">
+                            Completed
+                        </th>
+                        <th {{action 'sortBy' 'seen'}}  class="seen noselect pointer">
+                            Seen
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {{#each statusesSorted as |status|}}
+                        <tr>
+                            <td>
+                                {{status.student_id.first_name}}
+                            </td>
+                            <td>
+                                {{status.student_id.last_name}}
+                            </td>
+                            <td class="text-capitalize">
+                                {{status.student_id.role}}
+                            </td>
+                            <td class="completed">
+                                {{#if status.completed}}
+                                    <i class="fa fa-check"></i>
+                                {{/if}}
+                            </td>
+                            <td class="seen">
+                                {{#if status.seen}}
+                                    <i class="fa fa-check"></i>
+                                {{/if}}
+                            </td>
+                        </tr>
+                    {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button  class="btn btn-primary" type="button" {{action 'close'}} >Close</button>
+    </div>
+{{/bootstrap-modal}}

@@ -4,6 +4,14 @@
 import Ember from "ember";
 
 export default Ember.Component.extend({
+    didInsertElement: function(){
+        Ember.$('#timepicker').timepicker(
+            {
+                showInputs: false,
+                disableFocus: true
+            }
+        );
+    },
     actions: {
         toggleTime: function(){
             Ember.$('.js-switch').click();
@@ -11,8 +19,7 @@ export default Ember.Component.extend({
     },
     showPicker: function(){
         if (this.get('timepickerEnabled')){
-            setTimeout(function(){
-                console.log('hi');
+            Ember.run.later(this, function(){
                 Ember.$('#timepicker').timepicker(
                     {
                         showInputs: false,

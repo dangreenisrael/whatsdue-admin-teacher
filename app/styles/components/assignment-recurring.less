@@ -1,37 +1,44 @@
-.assignment-modal.recurring{
-  @circumference: 40px;
-  .second{
-    margin-left: @circumference/2+2;
-  }
-  .day{
-    background: #eff0f4;
-    color: #49586e;
-    font-size: 12px;
-    font-weight: bold;
-    width: @circumference;
-    height: @circumference;
-    line-height: @circumference;
-    border-radius: 50%;
-    -webkit-border-radius: 50%;
-    display: inline-block;
-    text-align: center;
-    margin: 2px;
-    &.true{
-      background-color: @whatsdueBlue;
-      color: white;
+.assignment-recurring{
+  .modal-body{
+    @circumference: 40px;
+    .second{
+      margin-left: @circumference/2+2;
     }
-  }
-  .days{
-    div{
-      margin-top: 10px;
-      input.date{
-        border: none;
-        width: 100px;
-        height: auto;
-        margin-left: 5px;
-        border-bottom: 2px solid;
-        border-radius: 0;
+    .day{
+      background: #eff0f4;
+      color: #49586e;
+      font-size: 12px;
+      font-weight: bold;
+      width: @circumference;
+      height: @circumference;
+      line-height: @circumference;
+      border-radius: 50%;
+      -webkit-border-radius: 50%;
+      display: inline-block;
+      text-align: center;
+      margin: 2px;
+      &.true{
+        background-color: @whatsdueBlue;
+        color: white;
       }
+    }
+    .days{
+      div{
+        margin-top: 10px;
+        input.date{
+          border: none;
+          width: 100px;
+          height: auto;
+          margin-left: 5px;
+          border-bottom: 2px solid;
+          border-radius: 0;
+        }
+      }
+    }
+    #assignmentDescription{
+      height: 135px;
+      margin-top: 20px;
     }
   }
 }
+

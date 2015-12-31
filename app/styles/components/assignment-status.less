@@ -1,0 +1,25 @@
+.assignment-status{
+  .asc{
+    &.first_name .first_name:after,
+    &.last_name .last_name:after,
+    &.role .role:after,
+    &.seen .seen:after,
+    &.completed .completed:after{
+        font-family: FontAwesome, sans-serif;
+        content: " \f0de";
+    }
+  }
+  .desc{
+    &.first_name .first_name:after,
+    &.last_name .last_name:after,
+    &.role .role:after,
+    &.seen .seen:after,
+    &.completed .completed:after {
+      font-family: FontAwesome, sans-serif;
+      content: " \f0dd";
+    }
+  }
+  .completed{
+    text-align: center;
+  }
+}

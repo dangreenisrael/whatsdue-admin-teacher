@@ -1,0 +1,49 @@
+
+<div class="panel course-panel">
+    <header class="panel-heading row">
+        <div class="col-sm-6">
+            {{#link-to 'secure.course.edit' model.id tooltipContent="Edit Course"}}
+                {{model.course_name}}:
+            {{/link-to}}
+            &emsp;
+
+            {{#if model.totalStudents}}
+                {{#link-to 'secure.course.info' model.id tag="span" class="student-count" tooltipContent="List of Subscribers"}}
+                    {{model.totalStudents}} Subscribers
+                {{/link-to}}
+            {{else}}
+                {{#link-to 'secure.message.email.invite' tag="span" class="student-count"}}
+                    Invite Students and Parents
+                {{/link-to}}
+            {{/if}}
+            <br/>
+            <span class="student-count">Join Code:</span>&emsp;
+            {{#link-to 'secure.message.email.invite' tag="span"}}
+                {{model.course_code}}
+            {{/link-to}}
+        </div>
+        <span class="right-buttons">
+            {{#link-to 'secure.course.assignment.new' model.id id="add-assignment" class="btn btn-primary"}}
+                <span class="plus">+</span> Add Assignment
+            {{/link-to}} &emsp;
+            {{#link-to 'secure.course.assignment.new.recurring' model.id tooltipContent="Add Recurring Assignment" class="btn btn-primary"}}
+                <i class="fa fa-refresh"></i>
+            {{/link-to}}
+        </span>
+    </header>
+    <div class="panel-body">
+        <div class="btn-group" role="group" aria-label="Default button group">
+            {{#link-to 'secure.course' (query-params type="current") class="btn btn-default"}}Upcoming{{/link-to}}
+            {{#link-to 'secure.course' (query-params type="past") class="btn btn-default"}}Past{{/link-to}}
+            {{#link-to 'secure.course' (query-params type="deleted")   class="btn btn-default"}}Deleted{{/link-to}}
+        </div>
+        {{assignment-list
+            assignments=model.assignments
+            courseId=model.id modal="modal"
+            firstAssignment="firstAssignment"
+            selected="checkSelected"
+            situation=type
+        }}
+    </div>
+</div>
+

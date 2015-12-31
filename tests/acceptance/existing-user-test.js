@@ -29,7 +29,7 @@ describe('Acceptance: Existing User', function() {
     andThen(function(){
       click("button.save");
       andThen(function(){
-        expect(find('#12345')[0], "Added assignment exists").to.be.ok;
+        expect($('#12345'), "Added assignment").to.exist;
       });
     });
   });

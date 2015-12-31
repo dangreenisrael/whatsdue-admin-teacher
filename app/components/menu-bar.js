@@ -7,6 +7,9 @@ export default Ember.Component.extend({
     actions: {
         toggleMenu: function () {
             this.sendAction('toggleMenu');
+        },
+        logout: function(){
+            this.sendAction('logout');
         }
     }
 });

@@ -6,7 +6,7 @@
         <th class="time">Time</th>
         <th class="category noselect pointer {{assignment_name}} {{sortDirection}}" {{action 'sortBy' 'assignment_name' }}>Category</th>
         <th class="description noselect">Description </th>
-        <th class="edit noselect">Edit </th>
+        <th class="edit noselect stats">Stats </th>
         <th class="bulk noselect">
             {{#if selectionMade}}
                 <button class="btn {{bulkButtonBackground}}" {{action 'bulkAction'}}>
@@ -24,23 +24,25 @@
     <tbody class="no-select">
         {{#each assignmentsSorted as |assignment|}}
             <tr id="{{assignment.id}}">
-                <td {{action 'click' 'courses.course.assignment.edit' assignment.course_id.id assignment.id }}>
-                    {{assignment.dueDate}}
+                <td {{action 'click' 'secure.course.assignment.edit' assignment.course_id.id assignment.id }}>
+                    {{format-date assignment.dueDateMoment "dddd,"}} <br/>
+                    {{format-date assignment.dueDateMoment "MMM Do"}}
+
                 </td>
-                <td {{action 'click' 'courses.course.assignment.edit' assignment.course_id.id assignment.id }}>
+                <td {{action 'click' 'secure.course.assignment.edit' assignment.course_id.id assignment.id }}>
                     {{#if assignment.time_visible}}
-                        {{assignment.due_time}}
+                        {{format-date assignment.dueDateMoment "h:mm A"}}
                     {{else}}
                         -------------
                     {{/if}}
                 </td>
-                <td {{action 'click' 'courses.course.assignment.edit' assignment.course_id.id assignment.id}}>
+                <td {{action 'click' 'secure.course.assignment.edit' assignment.course_id.id assignment.id}}>
                     {{assignment.assignment_name}}
                 </td>
-                <td {{action 'click' 'courses.course.assignment.edit' assignment.course_id.id assignment.id}}>
+                <td class="description" {{action 'click' 'secure.course.assignment.edit' assignment.course_id.id assignment.id}}>
                     {{description-text assignment.description}}
                 </td>
-                <td class="fa fa-edit" {{action 'click' 'courses.course.assignment.preview' assignment.course_id.id assignment.id}}>
+                <td class="fa fa-bar-chart stats" {{action 'click' 'secure.course.assignment.status' assignment.course_id.id assignment.id}}>
                 </td>
                 <td class="bulk">
                     <span{{action 'select' assignment}}>

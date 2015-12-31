@@ -1,14 +1,11 @@
 import resolver from './helpers/resolver';
+import registerSelectHelper from './helpers/register-select-helper';
+registerSelectHelper();
 import { setResolver } from 'ember-mocha';
-import 'selenium-webdriver';
-/* global mocha, chai */
+/* global mocha, chai, require */
 setResolver(resolver);
 
 mocha.setup({
     timeout: 10000,
     slow: 2000
 });
-
-//var chaiWebdriver = require('chai-webdriver');
-//console.log(chaiWebdriver);
-console.log(chai);

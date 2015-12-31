@@ -1,0 +1,53 @@
+{{#access-screen}}
+    <div class="register">
+        <div class="name">
+            <div class="form-group has-error">
+                <label class="control-label"> {{nameStatusMessage}} </label>
+            </div>
+            <span class="form-group {{statuses.salutation}}">
+                {{#x-select value=salutation action='recheckName' id="salutation" class="form-control" }}
+                    {{#x-option value=""}}--{{/x-option}}
+                    {{#x-option value="Mr."}}Mr.{{/x-option}}
+                    {{#x-option value="Ms."}}Ms.{{/x-option}}
+                    {{#x-option value="Mrs."}}Mrs.{{/x-option}}
+                    {{#x-option value="Miss"}}Miss.{{/x-option}}
+                    {{#x-option value="Dr."}}Dr.{{/x-option}}
+                    {{#x-option value="Prof."}}Prof.{{/x-option}}
+                {{/x-select}}
+            </span>
+            <span class="form-group {{statuses.first_name}}">
+                {{input value=first_name key-up='recheckName' id="firstName" type="text" class="form-control" placeholder="First Name" style="float:left; width:40%"}}
+            </span>
+            <span class="form-group {{statuses.last_name}}">
+                {{input value=last_name focus-out='checkNameAction' key-up='recheckName' id="lastName" type="text" class="form-control" placeholder="Last Name" style="float:right; width:39%"}}
+            </span>
+        </div>
+
+        <div class="form-group {{statuses.email}}">
+            {{#if emailStatusMessage}}
+                <label class="control-label" for="email" {{action 'setSuggestion'}}>{{emailStatusMessage}}</label>
+            {{/if}}
+            {{input value=email focus-out="validateEmailAction" id="email" type="email" class="form-control" placeholder="E-Mail"}}
+        </div>
+
+        <div class="form-group {{statuses.institution_name}}">
+            {{#if institutionStatusMessage}}
+                <label class="control-label" for="institutionName">{{institutionStatusMessage}}</label>
+            {{/if}}
+            {{input value=institution_name focus-out="checkInstitutionAction" id="institutionName" type="text" class="form-control" placeholder="School Name"}}
+        </div>
+
+        <div class="form-group {{statuses.password}}">
+            {{#if passwordStatusMessage}}
+                <label class="control-label" for="verifyPassword">{{passwordStatusMessage}}</label>
+            {{/if}}
+            {{input value=password id="choosePassword" type="password" class="form-control" placeholder="Choose Password" style="float:left; width:49%"}}
+            {{input value=confirmPassword focus-out='validatePasswordAction' id="verifyPassword" type="password" class="form-control" placeholder="Confirm Password" style="float:right; width:49%"}}
+        </div>
+
+        <button {{action 'registerAction'}} class="btn btn-lg btn-login btn-block">
+            <i class="fa fa-check"></i> Sign Up
+        </button>
+        <div id="fos_user_registration_form"><input type="hidden" id="fos_user_registration_form__token" name="fos_user_registration_form[_token]" value="LYQOWsOCSU17HNFxJwTyRG3XC4YXG55ytLBdoOSti1Q"></div>
+    </div>
+{{/access-screen}}

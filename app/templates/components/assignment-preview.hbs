@@ -43,7 +43,7 @@
                                                 <div class="time">
                                                     <span class="time-due">
                                                         {{#if timeVisible}}
-                                                            {{dueTime}}
+                                                            {{format-date dueDateMoment "h:mm A"}}
                                                         {{else}}
                                                             Morning
                                                         {{/if}}

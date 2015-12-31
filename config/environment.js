@@ -13,6 +13,15 @@ module.exports = function(environment) {
         'img-src': "*",
         'style-src': "'self' 'unsafe-inline' "
     },
+    social: {
+      google: {
+        clientId: '220312012516-vvvhrdkdaea1l2phj0h5hfjd38eu2880.apps.googleusercontent.com',
+        apiKey: 'abc' // optional
+        // if you want to load the library yourself with the `googleContactService.load()`,
+        // set this to false. If not set or truthy, it'll automatically load with your application
+        // autoLoad: true
+      }
+    },
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
@@ -25,7 +34,7 @@ module.exports = function(environment) {
       // when it is created
     },
     mixpanel: {
-      enabled: false,
+      enabled: true,
       LOG_EVENT_TRACKING: false,
       token: 'd2678f7dc9eb34a65ba2cd7b56cc7623',
       disable_auto_tracking: true // default: false
@@ -39,6 +48,13 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
+    ENV.baseURL = '/secure/';
+    ENV.namespace = "/app_dev.php/api/teacher";
+    ENV.accessNamespace = "/app_dev.php/api/access";
+
+  } else{
+    ENV.namespace = "/api/teacher";
+    ENV.accessNamespace = "/api/access";
   }
 
   if (environment === 'test') {

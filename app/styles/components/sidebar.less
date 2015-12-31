@@ -23,7 +23,11 @@
       overflow: scroll;
       padding-top: 0;
     }
+
     .panel-heading{
+      span{
+        color: @dark-blue;
+      }
       button{
         float: right;
         margin-top: -5px;
@@ -44,8 +48,14 @@
         position: relative;
         list-style: none;
         background: #fff;
+        font-size: 17px;
         border-bottom: 1px dotted rgba(0, 0, 0, 0.2);
+        &.active{
+          font-weight: 900;
+          color: @whatsdueBlue;
+        }
       }
+
 
       .fa-sort{
         top:1px;
@@ -59,10 +69,15 @@
 
 .referral{
   height: @referralHeight;
+  header{
+    span{
+      color: @dark-blue;
+    }
+  }
   .panel-body{
     padding-bottom: 0;
   }
   pre{
-    font-size: 12px;
+    font-size: 10px;
   }
 }

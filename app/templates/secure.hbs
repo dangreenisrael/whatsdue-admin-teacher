@@ -1,0 +1,29 @@
+<section id="main">
+
+    <!-- header start -->
+    {{menu-bar user=model toggleMenu="toggleMenu" logout="logout"}}
+    <!-- header end -->
+
+    <!-- main content start-->
+    <div class="main-content {{mobileMenu}}" {{action "hideMenu"}}>
+        <!-- header section start-->
+        <!-- header section end-->
+
+        <!--body wrapper start-->
+        <div class="wrapper">
+            <div class="row">
+                <div {{action "toggleMenu"}} class="col-sm-3 sidebar">
+                    {{course-bar courses=model.courses savedOrder=courseOrder modal="modal"}}
+                    {{referral-pane id=user.id}}
+                </div>
+
+                <div class="col-lg-9">
+                    {{outlet}}
+                </div>
+            </div>
+        </div>
+        <!--body wrapper end-->
+    </div>
+    <!-- main content end-->
+</section>
+

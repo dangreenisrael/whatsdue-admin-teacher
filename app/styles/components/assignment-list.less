@@ -1,9 +1,46 @@
 .assignment-list{
+  .date{
+    width: 100px;
+  }
+  .time{
+    width: 100px;
+  }
+  .category{
+    width: 100px;
+  }
+  .bulk{
+    width: 60px;
+  }
+
+  thead{
+    th.stats{
+      text-align: center;
+    }
+
+  }
   tbody{
     tr{
       td:not(.bulk){
         cursor: pointer;
       }
+
+      td.stats{
+        font-size: 20px;
+        text-align: center;
+        display: table-cell;
+        &:hover{
+          background-color: @whatsdueBlue;
+          color: white;
+
+        }
+      }
+
+      td.description{
+        max-width: 200px;
+        word-wrap: break-word;
+      }
+
+
       .preview{
         &:hover{
           color: @whatsdueBlue;

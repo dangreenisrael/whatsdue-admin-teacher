@@ -1,0 +1,53 @@
+@import "../variables";
+@import "../main";
+
+.register{
+  input, select {
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    background: #eaeaec;
+    box-shadow: none;
+    font-size: 12px;
+    border-width: 2px;
+  }
+  .combobox-container{
+    margin-bottom: 15px;
+    input{
+      margin-bottom: 0;
+    }
+    .input-group-addon{
+      background-color: #eaeaec;
+      border: none;
+    }
+  }
+
+  #salutation{
+    float:left;
+    width:19%;
+    height: 43px;
+    margin-right: 1%;
+    font-size: 12px;
+  }
+  #firstName{
+    float:left;
+    width:40%;
+  }
+  #lastName{
+    float:right; width:39%;
+  }
+  #choosePassword{
+    float:left;
+    width:49%;
+  }
+  #verifyPassword{
+    float:right;
+    width:49%
+  }
+}
+
+/* This is here because we want it to be overridden for validation */
+.form-signin {
+  input, select {
+    border: solid #eaeaec;
+  }
+}

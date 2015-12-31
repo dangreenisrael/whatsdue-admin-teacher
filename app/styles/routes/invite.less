@@ -2,13 +2,27 @@
   width: 800px;
   max-width: 800px!important;
   .form-group{
-    .section{
+    .section, .tokenfield{
       height: 180px;
       margin-top: 10px;
       overflow-y: scroll;
     }
     strong{
       font-size: 1.1em;
+    }
+    .tokenfield {
+      .token {
+        &.invalid {
+          background: #d9534f;
+          -webkit-border-radius: 3px;
+          -moz-border-radius: 3px;
+          border-radius: 3px;
+          color: white;
+          .close {
+            color: white;
+          }
+        }
+      }
     }
   }
 }

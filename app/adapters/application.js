@@ -3,13 +3,8 @@
  */
 
 import DS from "ember-data";
+import ENV from 'whatsdue-admin-teacher/config/environment';
 
 export default DS.RESTAdapter.extend({
-    namespace: 'api/teacher',
-    shouldReloadAll: function() {
-        return true;
-    },
-    shouldBackgroundReloadRecord: function() {
-        return true;
-    }
+    namespace: ENV.namespace
 });

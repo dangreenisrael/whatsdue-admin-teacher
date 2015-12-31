@@ -2,10 +2,10 @@
  * Created by Dan on 6/5/15.
  */
 import Ember from "ember";
-//Ember.SortableMixin,
 export default Ember.Component.extend({
     sortDirection: 'asc',
     sortProperty: 'timestamp',
+    timestamp: 'sorting',
     sortBy: function(){
         let sortProperty = this.get('sortProperty');
         let sortDirection = this.get('sortDirection');
@@ -13,18 +13,18 @@ export default Ember.Component.extend({
     }.property('sortDirection', 'sortProperty'),
     assignmentsSorted: Ember.computed.sort(
         'assignmentsFiltered', 'sortBy'),
-    assignmentsFiltered: Ember.computed('assignments.@each.status','selectionMade', 'type', function(){
-        return this.get('assignments').filterBy('status', this.get('type'));
+    assignmentsFiltered: Ember.computed('assignments.@each.situation','selectionMade', 'situation', function(){
+        return this.get('assignments').filterBy('situation', this.get('situation'));
     }),
-    bulkButton: Ember.computed('type', function(){
-       if (this.get('type') === "deleted"){
+    bulkButton: Ember.computed('situation', function(){
+       if (this.get('situation') === "deleted"){
            return "Un-delete";
        } else{
            return "Delete";
        }
     }),
-    bulkButtonBackground: Ember.computed('type', function(){
-        if (this.get('type') === "deleted"){
+    bulkButtonBackground: Ember.computed('situation', function(){
+        if (this.get('situation') === "deleted"){
             return "btn-success";
         } else{
             return "btn-danger";
@@ -58,7 +58,7 @@ export default Ember.Component.extend({
             this.set('selectionMade', (selected.length > 0));
         },
         bulkAction: function(){
-            if (this.get('type') === "deleted"){
+            if (this.get('situation') === "deleted"){
                 this.get('selected').forEach(function(assignment) {
                     assignment.set('archived', false);
                     assignment.set('selected', false);

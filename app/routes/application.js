@@ -3,28 +3,25 @@ import Ember from 'ember';
 export default Ember.Route.extend({
     renderTemplate: function() {
         this.render({ outlet: 'main' });
-        if(this.store.peekAll('course').filterBy('archived', false).length < 1){
-            this.mixpanel.track('New Signup');
-            this.transitionTo('courses.new');
-
-        }
     },
     didTransition: function() {
         __insp.push(["virtualPage"]);
     },
-    model: function() {
-        this.store.findAll('assignment');
-        return this.store.findAll('course');
-    },
-    checkLogin: function(){
-        Ember.$.get("/api/teacher/user").fail(function(){
-                alert('You have been logged out due to inactivity');
-                window.location = "/login";
-            });
+    beforeModel: function() {
+        Ember.$.get("/api/teacher/user",
+            response => {
+            if (!response.user){
+                //this.transitionTo('login');
+            } else{
+                this.transitionTo('secure');
+            }
+        });
     },
     actions: {
+        error: function(error){
+          console.log(error);
+        },
         modal: function(route, param){
-            this.checkLogin();
             if (param === undefined){
                 this.transitionTo(route);
             } else if (param.constructor === Array){
@@ -43,7 +40,6 @@ export default Ember.Route.extend({
             });
         },
         inviteUsers: function(){
-            this.checkLogin();
             this.render('message/email/invite', {
                 into: 'application',
                 outlet: 'modal'
@@ -59,7 +55,7 @@ export default Ember.Route.extend({
             }
         },
         close: function(){
-            this.transitionTo('courses.course');
+            this.transitionTo('secure.course', window.lastCourse);
         },
         save: function(){
             let route = this;
@@ -77,13 +73,13 @@ export default Ember.Route.extend({
                     "Unique Students": userData.unique_students
                 });
             });
-            this.transitionTo('courses.course');
+            this.transitionTo('secure.course', window.lastCourse);
         },
         remove: function() {
-            this.transitionTo('courses.course');
+            this.transitionTo('secure.course', window.lastCourse);
         },
         send: function(){
-            this.transitionTo('courses.course');
+            this.transitionTo('secure.course', window.lastCourse);
         }
     }
 });

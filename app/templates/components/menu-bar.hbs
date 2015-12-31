@@ -10,7 +10,7 @@
     <div class="menu-right ">
         <ul class="notification-menu">
             <li id="invite-users">
-                {{#link-to 'message.email.invite' class="btn btn-default dropdown-toggle"}}
+                {{#link-to 'secure.message.email.invite' class="btn btn-default dropdown-toggle"}}
                     Invite Subscribers {{fa-icon icon="users"}}
                 {{/link-to}}
             </li>
@@ -24,7 +24,7 @@
                 <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
                     <li><a href="mailto:aaron@whatsdueapp.com"><i class="fa fa-envelope"></i>Email Aaron</a></li>
                     <li><a href="skype:aarontaylor613?call"><i class="fa fa-phone"></i>Skype Aaron</a></li>
-                    <li><a href="/logout"><i class="fa fa-sign-out"></i> Log Out</a></li>
+                    <li><a {{action 'logout'}}><i class="fa fa-sign-out"></i> Log Out</a></li>
                 </ul>
             </li>
         </ul>

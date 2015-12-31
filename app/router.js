@@ -5,7 +5,8 @@ var Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-    this.route('courses', {path: '/'}, function(){
+    this.route('secure', {path: 'secure'}, function(){
+        this.route('new-course');
         this.route('course', {path: 'course/:course_id'}, function(){
             this.route('edit');
             this.route('info');
@@ -17,23 +18,16 @@ Router.map(function() {
                 });
             });
         });
-        this.route('new');
-    });
-    this.route('message', function(){
-        this.route('email', function(){
-            this.route('invite');
-        });
-    });
-    this.route('walkthrough', function(){
-        this.route('add-course', function(){
-        });
-    });
-    this.route('message', function(){
-        this.route('email', function(){
-            this.route('invite', function(){
+        this.route('message', function(){
+            this.route('email', function(){
+                this.route('invite', function(){
+                    this.route('confirmation');
+                });
             });
         });
     });
+    this.route('login', {path: "/"});
+    this.route('register');
 });
 
 export default Router;
