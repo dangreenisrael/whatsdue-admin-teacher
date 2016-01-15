@@ -37,7 +37,8 @@
             {{#link-to 'secure.course' (query-params type="past") class="btn btn-default"}}Past{{/link-to}}
             {{#link-to 'secure.course' (query-params type="deleted")   class="btn btn-default"}}Deleted{{/link-to}}
         </div>
-        {{assignment-list
+        {{
+            assignment/part/assignment-list
             assignments=model.assignments
             courseId=model.id modal="modal"
             firstAssignment="firstAssignment"

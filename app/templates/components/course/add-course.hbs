@@ -1,0 +1,17 @@
+{{#bootstrap-modal }}
+    {{log "user" user}}
+    <div class="modal-header">
+        <button type="button" {{action 'close'}} class="close">×</button>
+        <h4 class="modal-title">{{title}}</h4>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <div class="col-md-12">
+                {{input type="text" enter="save" value=course_name maxlength="20" class="pull-left form-control focus" placeholder="Class Name"}}
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button {{action 'save'}} class="btn btn-primary" >{{saveText}}</button>
+    </div>
+{{/bootstrap-modal}}

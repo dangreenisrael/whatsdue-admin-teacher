@@ -1,9 +1,9 @@
 <div class="access">
     <div class="form-signin">
         <div class="form-signin-heading text-center">
-            <a href="/">
+            {{#link-to 'access.login'}}
                 <img class="sign-in-logo" src="/assets/img/whatsdue-logo-login.png" alt="WhatsDue Login Logo">
-            </a>
+            {{/link-to}}
         </div>
         <div class="login-wrap">
             {{yield}}

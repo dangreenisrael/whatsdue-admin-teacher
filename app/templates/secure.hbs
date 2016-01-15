@@ -14,7 +14,7 @@
             <div class="row">
                 <div {{action "toggleMenu"}} class="col-sm-3 sidebar">
                     {{course-bar courses=model.courses savedOrder=courseOrder modal="modal"}}
-                    {{referral-pane id=user.id}}
+                    {{referral-pane userId=model.id}}
                 </div>
 
                 <div class="col-lg-9">

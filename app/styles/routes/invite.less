@@ -1,6 +1,11 @@
 .invite{
   width: 800px;
   max-width: 800px!important;
+  textarea:focus{
+    border-color: #66afe9!important;
+    outline: 0!important;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6)!important;
+  }
   .form-group{
     .section, .tokenfield{
       height: 180px;
@@ -9,6 +14,11 @@
     }
     strong{
       font-size: 1.1em;
+    }
+    ul{
+      li{
+        padding-left: 20px;
+      }
     }
     .tokenfield {
       .token {
@@ -22,6 +32,22 @@
             color: white;
           }
         }
+        &.valid {
+          background: #3c763d;
+          border-color: #3c763d;
+          -webkit-border-radius: 3px;
+          -moz-border-radius: 3px;
+          border-radius: 3px;
+          color: white;
+          .close {
+            color: white;
+          }
+        }
+      }
+      .token-input{
+        float: left;
+        top:0;
+        position: relative;
       }
     }
   }

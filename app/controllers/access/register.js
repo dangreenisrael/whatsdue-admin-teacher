@@ -3,13 +3,13 @@ import ENV from 'whatsdue-admin-teacher/config/environment';
 import Email from 'whatsdue-admin-teacher/utils/email-validation';
 
 export default Ember.Controller.extend({
-    email:                  "dangreenisrael@gmail.com",
-    password:               "123",
-    confirmPassword:        "123",
-    first_name:             "Dan",
-    last_name:              "Green",
-    salutation:             "Mr.",
-    institution_name:       "IDC",
+    email:                  "",
+    password:               "",
+    confirmPassword:        "",
+    first_name:             "",
+    last_name:              "",
+    salutation:             "",
+    institution_name:       "",
     emailSuggestion:        "",
     statuses:{
         email:              "",
@@ -64,11 +64,19 @@ export default Ember.Controller.extend({
                 if (formValid){
                     context.register();
                 }
+            }, function(){
+                console.log(context.get('statuses.email'));
+                if(context.get('statuses.email') === "has-warning"){
+                    let verifyEmail = confirm('Please verify your email doesn\'t have a typo: "'+context.get('email')+'"?');
+                    if (verifyEmail) {
+                        context.register();
+                    }
+                }
             });
         }
     },
     checkName: function(){
-        let properties = ['first_name', 'last_name', 'salutation'];
+        let properties = ['last_name', 'salutation'];
         let hasError = false;
         properties.forEach(property=>{
             let status = "statuses."+property;
@@ -79,8 +87,9 @@ export default Ember.Controller.extend({
                 hasError = true;
             }
         });
+
         if (hasError){
-            this.set("nameStatusMessage", "Please enter your full name with salutation");
+            this.set("nameStatusMessage", "Please enter at least your last name & salutation");
             return false;
         } else{
             this.set("nameStatusMessage", null);
@@ -107,11 +116,14 @@ export default Ember.Controller.extend({
                 context.set('emailStatusMessage', null);
                 context.set('statuses.email', 'valid');
                 context.set('suggestion', null);
+                context.set('existingUser', false);
+
                 resolve();
             }, function (response) {
                 context.set('emailStatusMessage', response.message);
                 context.set('statuses.email', response.status);
                 context.set('emailSuggestion', response.suggestion);
+                context.set('existingUser', response.existingUser);
                 reject();
             });
         });
@@ -130,6 +142,10 @@ export default Ember.Controller.extend({
         }
     },
     register: function(){
+        /* Allow first name to be blank */
+        if (!this.get('first_name')){
+            this.set('first_name', " ");
+        }
         let controller = this;
         let data = {
             email:              this.get('email'),

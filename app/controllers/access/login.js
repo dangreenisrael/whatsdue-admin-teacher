@@ -19,8 +19,8 @@ export default Ember.Controller.extend({
             }).done(function (){
                 controller.transitionToRoute('secure');
             }).fail(function(){
-                alert('Try again');
-            })
+                alert('Please check you username and/or password ');
+            });
         }
     }
 });

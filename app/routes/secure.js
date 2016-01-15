@@ -10,22 +10,22 @@ export default Ember.Route.extend({
     },
     model: function(){
         let route = this;
-        return this.store.findAll('user').then(function(user){
-            route.store.findAll('assignment');
-            return user.get('firstObject');
-        });
-    },
-    afterModel: function(user){
-
-        this.store.findAll('course').then(courses=>{
+        return this.store.findAll('course').then(courses=>{
             courses = courses.filterBy('archived', false);
             if(courses.length < 1){
                 this.transitionTo('secure.new-course');
             } else{
                 var firstCourse = courses.get('firstObject').get('id');
+                window.lastCourse = firstCourse;
                 this.transitionTo('secure.course', firstCourse);
             }
+            return this.store.findAll('user').then(function(user){
+                route.store.findAll('assignment');
+                return user.get('firstObject');
+            });
         });
+    },
+    afterModel: function(user){
 
         var route       = this,
             createdAt           = moment(user.get('signup_date')).format('X'),
@@ -42,18 +42,19 @@ export default Ember.Route.extend({
             unique_students     = user.get('unique_students'),
             courses             = user.get('courses');
 
-        var fullName = first_name+" "+last_name;
+        var fullName = salutation+" "+first_name+" "+last_name;
         window.Intercom('boot', {
             app_id:                 "kqf71wt5",
             email:                  email,
             user_id:                userId,
-            name:                   first_name+" "+last_name,
+            name:                   fullName,
             "Institution Name":     institution_name,
             "Created At":           createdAt,
             "Total Courses":        total_courses,
             "Total Assignments":    total_assignments,
             "Unique Students":      unique_students
         });
+
         route.mixpanel.identify(userId);
         route.mixpanel.peopleSet({
             "$email":               email,
@@ -121,7 +122,7 @@ export default Ember.Route.extend({
     },
     actions: {
         logout: function(){
-            this.transitionTo('login');
+            this.transitionTo('access.login');
             this.store.unloadAll();
             Ember.$.get(ENV.accessNamespace+"/logout");
         }

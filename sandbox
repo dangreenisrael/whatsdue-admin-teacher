@@ -1,0 +1,5 @@
+python:
+
+list - [5, 'hello'] - array
+dict - {'a':5, 'b':'sand'} - object
+

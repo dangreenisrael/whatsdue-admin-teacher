@@ -1,16 +1,7 @@
-{{#bootstrap-modal}}
-    <div class="modal-header">
-        <button type="button" {{action 'close'}} class="close">×</button>
-        <h4 class="modal-title">New Course</h4>
-    </div>
-    <div class="modal-body">
-        <div class="form-group">
-            <div class="col-md-12">
-                {{input type="text" enter="save" value=course_name maxlength="20" class="pull-left form-control focus" placeholder="Course Name"}}
-            </div>
-        </div>
-    </div>
-    <div class="modal-footer">
-        <button {{action 'save'}} class="btn btn-primary" >Save</button>
-    </div>
-{{/bootstrap-modal}}
+{{
+    course/add-course
+    course_name = course_name
+    saved = "saved"
+    title = "Add a Class"
+    saveText = "save"
+}}

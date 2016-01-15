@@ -1,11 +1,11 @@
 import Ember from 'ember';
 
 var Router = Ember.Router.extend({
-    location: 'hash'
+    location: 'history'
 });
 
 Router.map(function() {
-    this.route('secure', {path: 'secure'}, function(){
+    this.route('secure', function(){
         this.route('new-course');
         this.route('course', {path: 'course/:course_id'}, function(){
             this.route('edit');
@@ -26,8 +26,10 @@ Router.map(function() {
             });
         });
     });
-    this.route('login', {path: "/"});
-    this.route('register');
+    this.route('access', {path: "/"} , function(){
+        this.route('login', {path: "/"});
+        this.route('register', {path: "/signup"});
+    });
 });
 
 export default Router;

@@ -1,0 +1,40 @@
+{{#bootstrap-modal type="invite" }}
+    <div class="modal-header">
+        <button type="button" {{action 'close'}} class="close" >×</button>
+        <h4 class="modal-title">Invite Students and Parents</h4>
+    </div>
+    <div class="modal-body">
+        <form action="#" class="form-horizontal ">
+            <p>
+                Invite your class to use the app by sending them an email here.
+                We’ll include instructions how they can get started along with the join code.
+                Or, if you prefer, just give them the join code in class.
+            </p>
+            <div class="form-group">
+                <div class="col-sm-3 {{courseStatus}}">
+                    <strong>Choose Class</strong>
+                    {{multiselect-checkboxes classNames="checkbox section noselect" options=courses selection=selectedClasses labelProperty="course_name"}}
+                </div>
+                <div class="col-sm-4">
+                    <strong>Personalize the Email</strong>
+                    {{textarea value=message class="form-control section" placeholder="Make sure your class knows its you inviting them to use the app."}}
+                </div>
+                <div class="col-sm-5 {{emailStatus}}">
+                    <strong>Recipients</strong><small> (Email addresses are kept private)</small>
+                    {{email-tokens
+                    tokens=emails
+                    value=value
+                    element$ = element$
+                    createdToken = createdToken
+                    placeholder="Enter the emails you want to send invites to."
+                    delimiter = tokenDelimiters
+                    }}
+                    {{value}}
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" {{action 'send'}} >Send Email</button>
+    </div>
+{{/bootstrap-modal}}

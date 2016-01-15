@@ -1,7 +1,7 @@
 {{#access-screen}}
     <form  {{action 'login' on="enter"}}>
-        {{input value=username type="text" class="form-control" placeholder="Email or Username" autofocus="" id="username" name="_username"required="required"}}
-        {{input value=password type="password" class="form-control" placeholder="Password" id="password" name="_password" required="required"}}
+        {{input value=username              type="text" class="form-control" placeholder="Email or Username" autofocus="" id="username" required="required"}}
+        {{input value=password              type="password" class="form-control" placeholder="Password" id="password"  required="required"}}
         <div class="row">
             <div class="col-md-6">
                 <button  {{action 'login'}} class="btn btn-lg btn-login btn-block" type="submit">
@@ -9,7 +9,7 @@
                 </button>
             </div>
             <div class="col-md-6">
-                {{#link-to "register" class="btn btn-lg btn-login btn-block btn-info"}}
+                {{#link-to "access.register" class="btn btn-lg btn-login btn-block btn-info"}}
                     Sign Up
                 {{/link-to}}
             </div>

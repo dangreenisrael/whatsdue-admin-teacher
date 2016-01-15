@@ -3,4 +3,4 @@ export default function(){
     //    this.hasClass('fade'),
     //    this.use('fade', { duration: 3000 })
     //);
-};
+}

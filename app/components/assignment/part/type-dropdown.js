@@ -6,7 +6,7 @@ import DropdownComponentMixin from 'ember-rl-dropdown/mixins/rl-dropdown-compone
 
 export default Ember.Component.extend(DropdownComponentMixin, {
     currentOption: "Homework",
-    options: ["Homework", "Project", "Test", "Quiz"],
+    options: ["Homework", "Project", "Quiz", "Test"],
     custom: false,
     actions:{
         select: function(value){

@@ -1,14 +1,17 @@
-{{#bootstrap-modal type="invite"}}
+{{#bootstrap-modal type="confirmInvite" }}
     <div class="modal-header">
         <button type="button" {{action 'close'}} class="close" >×</button>
         <h4 class="modal-title">Invite Students and Parents</h4>
     </div>
     <div class="modal-body">
-        <i class="fa fa-paper-plane-o"></i>
-        {{validEmails}} invitation emails were sent!
-        {{invalidEmails}} emails were invalid.
+        <div class="plane">
+            <i class="fa fa-paper-plane-o"></i>
+        </div>
+        <p>
+            {{emailCount}} invitation emails were sent!
+        </p>
     </div>
     <div class="modal-footer">
-        <button class="btn btn-primary" type="button" {{action 'send'}} >Send Email</button>
+        <button class="btn btn-primary" type="button" {{action 'close'}} >Got It!</button>
     </div>
 {{/bootstrap-modal}}

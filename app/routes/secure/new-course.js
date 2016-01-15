@@ -8,8 +8,8 @@ export default Ember.Route.extend({
         });
     },
     actions:{
-        close: function(){
-            window.location.hash = '#/';
-        }
+        //close: function(){
+        //    window.history.back();
+        //}
     }
 });

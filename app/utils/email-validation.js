@@ -78,7 +78,8 @@ export default Ember.Object.create({
         let response = {
             message:    null,
             status:     null,
-            suggestion: null
+            suggestion: null,
+            existingUser:   false
         };
         return new Ember.RSVP.Promise(function(resolve, reject){
             /* Check Regex */
@@ -97,7 +98,8 @@ export default Ember.Object.create({
                         });
                     }, function(){
                         response.status  = "has-error";
-                        response.message = "You are already signed up for WhatsDue";
+                        response.message = "You're already signed up.";
+                        response.existingUser = "true";
                         reject(response);
                     });
                 }, function(validateCommonDomainsResponse){

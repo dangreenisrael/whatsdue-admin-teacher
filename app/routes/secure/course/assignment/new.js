@@ -17,6 +17,11 @@ export default Ember.Route.extend({
             controller.set('timeSet', false);
             controller.set('dueDateMoment', moment().add(1, 'days').set('hour', 9).set('minute', 0));
         }
+    },
+    actions:{
+        backToCourse: function(course){
+            this.transitionTo('secure.course', course);
+        }
     }
 });
 

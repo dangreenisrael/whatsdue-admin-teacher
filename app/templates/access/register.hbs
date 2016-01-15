@@ -16,7 +16,7 @@
                 {{/x-select}}
             </span>
             <span class="form-group {{statuses.first_name}}">
-                {{input value=first_name key-up='recheckName' id="firstName" type="text" class="form-control" placeholder="First Name" style="float:left; width:40%"}}
+                {{input value=first_name key-up='recheckName' id="firstName" type="text" class="form-control" placeholder="First (Optional)" style="float:left; width:40%"}}
             </span>
             <span class="form-group {{statuses.last_name}}">
                 {{input value=last_name focus-out='checkNameAction' key-up='recheckName' id="lastName" type="text" class="form-control" placeholder="Last Name" style="float:right; width:39%"}}
@@ -25,7 +25,14 @@
 
         <div class="form-group {{statuses.email}}">
             {{#if emailStatusMessage}}
-                <label class="control-label" for="email" {{action 'setSuggestion'}}>{{emailStatusMessage}}</label>
+                <label class="control-label" for="email" {{action 'setSuggestion'}}>
+                    {{emailStatusMessage}}
+                    {{#if existingUser}}
+                        {{#link-to "access.login"}}
+                            Login here
+                        {{/link-to}}
+                    {{/if}}
+                </label>
             {{/if}}
             {{input value=email focus-out="validateEmailAction" id="email" type="email" class="form-control" placeholder="E-Mail"}}
         </div>

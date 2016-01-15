@@ -3,6 +3,7 @@ import Ember from 'ember';
 export default Ember.Route.extend({
     renderTemplate: function() {
         this.render({ outlet: 'main' });
+
     },
     didTransition: function() {
         __insp.push(["virtualPage"]);
@@ -11,15 +12,13 @@ export default Ember.Route.extend({
         Ember.$.get("/api/teacher/user",
             response => {
             if (!response.user){
-                //this.transitionTo('login');
-            } else{
-                this.transitionTo('secure');
+                this.transitionTo('login');
             }
         });
     },
     actions: {
         error: function(error){
-          console.log(error);
+            console.log(error);
         },
         modal: function(route, param){
             if (param === undefined){

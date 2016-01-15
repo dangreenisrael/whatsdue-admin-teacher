@@ -1,0 +1,41 @@
+{{#bootstrap-modal type="assignment" }}
+    <div class="modal-header">
+        <button type="button" {{action 'close'}} class="close">×</button>
+        <h4 class="modal-title">New {{assignmentName}} due <strong>{{dueDateTitle}}</strong> ({{course.course_name}})</h4>
+    </div>
+    <div class="modal-body">
+        <div class="col-md-7">
+            {{
+            assignment/part/assignment-editor
+            display_time=dueTime
+            timepickerEnabled=false
+            assignment_name=assignmentName
+            description=description
+            dueDateMoment=dueDateMoment
+            timepickerEnabled=timeSet
+            save="save"
+            close="close"
+            }}
+        </div>
+        <div class="col-md-5">
+            {{
+            assignment/part/assignment-preview
+            course=course.course_name
+            dueDateMoment=dueDateMoment
+            dueTime=dueTime
+            timeVisible=timeSet
+            category=assignmentName
+            description=description
+            }}
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary save" type="button" {{action 'save'}} >
+            {{#if course.student_list}}
+                Send
+            {{else}}
+                Save
+            {{/if}}
+        </button>
+    </div>
+{{/bootstrap-modal}}

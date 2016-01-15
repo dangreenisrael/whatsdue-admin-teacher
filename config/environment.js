@@ -4,14 +4,16 @@ module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'whatsdue-admin-teacher',
     environment: environment,
-    baseURL: '/secure/',
+    baseURL:    '/',
+    namespace:    "/api/teacher",
+    accessNamespace: "/api/access",
     contentSecurityPolicy: {
-        'default-src': "*",
-        'script-src': "'self' 'unsafe-inline' 'unsafe-eval'",
-        'font-src': "'self'",
-        'connect-src': "*",
-        'img-src': "*",
-        'style-src': "'self' 'unsafe-inline' "
+          'default-src': "*",
+          'script-src': "'self' 'unsafe-inline' 'unsafe-eval'",
+          'font-src': "'self'",
+          'connect-src': "*",
+          'img-src': "*",
+          'style-src': "'self' 'unsafe-inline' "
     },
     social: {
       google: {
@@ -48,13 +50,9 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
-    ENV.baseURL = '/secure/';
     ENV.namespace = "/app_dev.php/api/teacher";
     ENV.accessNamespace = "/app_dev.php/api/access";
-
-  } else{
-    ENV.namespace = "/api/teacher";
-    ENV.accessNamespace = "/api/access";
+    ENV.baseURL = '/app_dev.php/';
   }
 
   if (environment === 'test') {

@@ -18,10 +18,6 @@ module.exports = function(defaults) {
     app.import('vendor/external-vendors/bootstrap-timepicker/js/bootstrap-timepicker.js');
     app.import('vendor/external-vendors/bootstrap-timepicker/css/bootstrap-timepicker.css');
 
-    //app.import('vendor/external-vendors/foundation/css/foundation.css');
-    //app.import('vendor/external-vendors/foundation/js/foundation.js');
-    //app.import('vendor/external-vendors/foundation/js/foundation.joyride.js');
-
     app.import('vendor/template-vendors/theme-style.css');
     app.import('vendor/template-vendors/bootstrap-reset.css');
     app.import('vendor/external-vendors/ba-linkify.min.js');

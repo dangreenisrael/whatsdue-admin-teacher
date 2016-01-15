@@ -13,10 +13,10 @@ export default Ember.Controller.extend({
             var courseName = model.get('course_name');
             var dialogue = confirm("Press OK to delete "+courseName);
             if (dialogue === true) {
-                controller.transitionToRoute('application');
-               return model.destroyRecord().then(function(){
+                model.destroyRecord().then(function(){
+                    controller.transitionToRoute('secure');
                     controller.mixpanel.trackEvent('Course Removed');
-                    return true;
+                    return false;
                 });
             }
         },
