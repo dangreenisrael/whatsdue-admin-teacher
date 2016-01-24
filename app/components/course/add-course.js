@@ -29,6 +29,7 @@ export default Ember.Component.extend({
                     instructor_name: userName
                 }).save().then(function(course){
                     component.set('course_name', "");
+                    window.lastCourse = course.get('id');
                     component.sendAction('saved', course);
                 });
                 this.mixpanel.trackEvent('Course Added');

@@ -25,6 +25,12 @@ Router.map(function() {
                 });
             });
         });
+        this.route('walkthrough', function(){
+            this.route('welcome');
+            this.route('add-course');
+            this.route('add-assignment',{path: 'add-assignment/:course_id'});
+            this.route('send-invites');
+        });
     });
     this.route('access', {path: "/"} , function(){
         this.route('login', {path: "/"});

@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import ENV from 'whatsdue-admin-teacher/config/environment';
+/* global moment, __insp */
 
 export default Ember.Route.extend({
     renderTemplate: function() {
@@ -15,9 +16,11 @@ export default Ember.Route.extend({
             if(courses.length < 1){
                 this.transitionTo('secure.new-course');
             } else{
-                var firstCourse = courses.get('firstObject').get('id');
-                window.lastCourse = firstCourse;
-                this.transitionTo('secure.course', firstCourse);
+                if (ENV.environment !== "development"){
+                    var firstCourse = courses.get('firstObject').get('id');
+                    window.lastCourse = firstCourse;
+                    this.transitionTo('secure.course', firstCourse);
+                }
             }
             return this.store.findAll('user').then(function(user){
                 route.store.findAll('assignment');
@@ -26,7 +29,6 @@ export default Ember.Route.extend({
         });
     },
     afterModel: function(user){
-
         var route       = this,
             createdAt           = moment(user.get('signup_date')).format('X'),
             signup_date         = user.get('signup_date'),
@@ -38,9 +40,9 @@ export default Ember.Route.extend({
             institution_name    = user.get('institution_name'),
             total_assignments   = user.get('total_assignments'),
             total_courses       = user.get('total_courses'),
-            unique_invitations  = user.get('unique_invitations'),
-            unique_students     = user.get('unique_students'),
-            courses             = user.get('courses');
+            unique_students     = user.get('unique_students');
+            // unique_invitations  = user.get('unique_invitations'),
+
 
         var fullName = salutation+" "+first_name+" "+last_name;
         window.Intercom('boot', {
@@ -72,6 +74,7 @@ export default Ember.Route.extend({
         route.mixpanel.trackEvent("Logged In");
         /* Begin Inspectlet */
         if (ENV.environment === 'production') {
+            /* jshint ignore:start */
             window.__insp = window.__insp || [];
             __insp.push(['wid', 2075519626]);
             (function () {
@@ -91,6 +94,8 @@ export default Ember.Route.extend({
                 setTimeout(ldinsp, 500);
                 document.readyState !== "complete" ? (window.attachEvent ? window.attachEvent('onload', ldinsp) : window.addEventListener('load', ldinsp, false)) : ldinsp();
             })();
+            /* jshint ignore:end */
+
             __insp.push(['identify',    fullName]);
             __insp.push(['tagSession', {
                 id: userId,

@@ -1,4 +1,4 @@
-{{#bootstrap-modal type="invite" }}
+{{#bootstrap-modal type="invite" class=class}}
     <div class="modal-header">
         <button type="button" {{action 'close'}} class="close" >×</button>
         <h4 class="modal-title">Invite Students and Parents</h4>
@@ -7,13 +7,14 @@
         <form action="#" class="form-horizontal ">
             <p>
                 Invite your class to use the app by sending them an email here.
-                We’ll include instructions how they can get started along with the join code.
-                Or, if you prefer, just give them the join code in class.
+                We’ll include instructions how they can get started along with the access code.
+                Or, if you prefer, just give them the access code in class.
             </p>
             <div class="form-group">
                 <div class="col-sm-3 {{courseStatus}}">
                     <strong>Choose Class</strong>
                     {{multiselect-checkboxes classNames="checkbox section noselect" options=courses selection=selectedClasses labelProperty="course_name"}}
+                    {{log selectedClasses}}
                 </div>
                 <div class="col-sm-4">
                     <strong>Personalize the Email</strong>
@@ -29,12 +30,17 @@
                     placeholder="Enter the emails you want to send invites to."
                     delimiter = tokenDelimiters
                     }}
-                    {{value}}
                 </div>
             </div>
         </form>
     </div>
     <div class="modal-footer">
+        {{#if completion}}
+            {{progress-bar completion=completion}}
+        {{/if}}
+        {{#if closeText}}
+            <button class="btn btn-default" type="button" {{action 'close'}} > {{closeText}} </button>
+        {{/if}}
         <button class="btn btn-primary" type="button" {{action 'send'}} >Send Email</button>
     </div>
 {{/bootstrap-modal}}
