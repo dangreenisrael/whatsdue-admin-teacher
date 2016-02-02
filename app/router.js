@@ -26,16 +26,17 @@ Router.map(function() {
             });
         });
         this.route('walkthrough', function(){
-            this.route('welcome');
             this.route('add-course');
             this.route('add-assignment',{path: 'add-assignment/:course_id'});
             this.route('send-invites');
+            this.route('try-it-out', {path: 'try-it-out/:course_id'});
         });
     });
     this.route('access', {path: "/"} , function(){
         this.route('login', {path: "/"});
         this.route('register', {path: "/signup"});
     });
+    this.route('page-not-found', { path: '/*wildcard' });
 });
 
 export default Router;

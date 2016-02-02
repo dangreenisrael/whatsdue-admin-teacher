@@ -5,7 +5,8 @@ export default Ember.Route.extend({
     },
     actions:{
         goToInvite: function(){
-            this.transitionTo('secure.walkthrough.send-invites');
+            let courseId = this.get('controller').get('model').get('id');
+            this.transitionTo('secure.walkthrough.try-it-out', courseId);
         }
     }
 });

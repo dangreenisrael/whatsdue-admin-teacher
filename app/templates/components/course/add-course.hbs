@@ -5,19 +5,16 @@
         <h4 class="modal-title">{{title}}</h4>
     </div>
     <div class="modal-body">
-        <div class="form-group">
+        <div class="form-group verticallyCenter">
             <p>
-                What do you want to call it?
+                {{yield}}
             </p>
-            {{input type="text" enter="save" value=course_name maxlength="20" class="form-control focus"}}
-            <p>
-                Pick something short and memorable
-            </p>
+            {{input type="text" enter="save" value=course_name placeholder="Class Name" maxlength="20" class="form-control focus"}}
         </div>
     </div>
     <div class="modal-footer">
         {{#if completion}}
-            {{progress-bar completion=completion}}
+            {{welcome-progress stage=1}}
         {{/if}}
         <button {{action 'save'}} class="btn btn-primary" >{{saveText}}</button>
     </div>

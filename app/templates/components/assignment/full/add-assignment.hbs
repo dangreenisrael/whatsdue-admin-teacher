@@ -4,7 +4,9 @@
         <h4 class="modal-title">New {{assignmentName}} due <strong>{{dueDateTitle}}</strong> ({{course.course_name}})</h4>
     </div>
     <div class="modal-body">
+
         <div class="col-md-7">
+            {{yield}}
             {{
             assignment/part/assignment-editor
             display_time=dueTime
@@ -31,7 +33,7 @@
     </div>
     <div class="modal-footer">
         {{#if completion}}
-            {{progress-bar completion=completion}}
+            {{welcome-progress stage=2}}
         {{/if}}
         <button class="btn btn-primary save" type="button" {{action 'save'}} >
             {{#if saveText}}

@@ -1,0 +1,26 @@
+{{#bootstrap-modal class="welcome try-it-out"}}
+    <div class="modal-header">
+        <button type="button" {{action 'close'}} class="close">×</button>
+        <h4 class="modal-title">Try our the app</h4>
+    </div>
+    <div class="modal-body">
+        <div class="verticallyCenter">
+            <h2>
+                Want to try the app out for yourself before inviting your class?
+            </h2>
+            <p>
+                Just hit the button bellow and we'll invite you to the class you just created via email.
+            </p>
+            <p>
+                <button {{action 'send'}}class="btn btn-primary">Send and app invite to my email</button>
+            </p>
+            <p>
+                Or you can skip straight ahead and invite your class.
+            </p>
+        </div>
+    </div>
+    <div class="modal-footer">
+        {{welcome-progress stage=3}}
+        {{#link-to "secure.walkthrough.send-invites" class="btn btn-primary"}}Invite your class{{/link-to}}
+    </div>
+{{/bootstrap-modal}}

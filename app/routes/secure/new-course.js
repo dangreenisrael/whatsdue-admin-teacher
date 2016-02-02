@@ -13,7 +13,7 @@ export default Ember.Route.extend({
         },
         saved: function(course) {
             console.log('Saved');
-            this.transitionToRoute('secure.course.assignment.new', course.get('id'));
+            this.transitionTo('secure.course.assignment.new', course.get('id'));
         }
     }
 });

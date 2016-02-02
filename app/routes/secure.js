@@ -26,6 +26,8 @@ export default Ember.Route.extend({
                 route.store.findAll('assignment');
                 return user.get('firstObject');
             });
+        }, function(){
+           route.transitionTo('access.login');
         });
     },
     afterModel: function(user){

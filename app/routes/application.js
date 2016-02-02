@@ -8,14 +8,6 @@ export default Ember.Route.extend({
     didTransition: function() {
         __insp.push(["virtualPage"]);
     },
-    beforeModel: function() {
-        Ember.$.get("/api/teacher/user",
-            response => {
-            if (!response.user){
-                this.transitionTo('login');
-            }
-        });
-    },
     actions: {
         error: function(error){
             console.log(error);

@@ -1,0 +1,33 @@
+@import "../variables";
+.welcome-progress{
+  position: absolute;
+  text-align: left;
+  @diameter: 35px;
+  div {
+    width: @diameter;
+    height: @diameter;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 33px;
+    display: inline-block;
+    font-weight: bold;
+    font-size: 1.3em;
+    border: 2px solid @whatsdueBlue;
+    &.solid{
+      background: @whatsdueBlue;
+      color: white;
+    }
+    &.white{
+      background: white;
+      color: @whatsdueBlue;
+    }
+  }
+
+  hr{
+    @lineWidth: 3px;
+    width: 50px;
+    display: inline-block;
+    margin: 0 -5px @lineWidth -5px;
+    border: @lineWidth solid @whatsdueBlue;
+  }
+}

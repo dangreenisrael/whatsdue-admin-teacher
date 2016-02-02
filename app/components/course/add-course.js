@@ -20,7 +20,7 @@ export default Ember.Component.extend({
                 this.mixpanel.trackEvent('Course Added Failed',{
                     Reason: "No name given"
                 });
-                alert("You need to enter a course name");
+                alert("You need to enter a class name");
                 return false;
             } else{
                 var userName = user.salutation + " " + user.first_name + " " + user.last_name;

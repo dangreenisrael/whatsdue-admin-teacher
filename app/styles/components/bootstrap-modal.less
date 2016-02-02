@@ -19,4 +19,28 @@
   padding-left: 0;
   animation-name: showFully;
   animation-duration: 0.15s;
+
+  .modal-dialog {
+    width: 800px;
+    &.small{
+      width: 600px;
+      .modal-body{
+        padding:30px 10px;
+      }
+    }
+    &:not(.small){
+      width: 800px;
+      .modal-body{
+        height: 380px;
+      }
+    }
+    .modal-header{
+      h4{
+        text-align: left;
+      }
+    }
+    .modal-body{
+      overflow: auto
+    }
+  }
 }

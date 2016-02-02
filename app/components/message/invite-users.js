@@ -43,7 +43,7 @@ export default Ember.Component.extend({
                 this.mixpanel.trackEvent('Invite Users Failed', {
                     Reason: "No course chosen"
                 });
-                alert("You must choose at least one course");
+                alert("You must choose at least one class");
                 return false;
             } else if(!emailTokens){
                 this.mixpanel.trackEvent('Invite Users Failed', {
